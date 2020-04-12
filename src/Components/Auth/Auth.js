@@ -13,6 +13,8 @@ function Auth(props) {
     const handleRegister = () => {
         axios.post(`/auth/register`, {email: props.email, password, first_name, last_name, profile_pic})
         .then(res => {
+            console.log(res.data)
+            props.getEmployee(res.data)
             props.history.push('/dashboard')
         })
         .catch(err => console.log(err))
@@ -62,4 +64,4 @@ const mapStateToProps = (reduxState) => {
   return { email };
 };
 
-export default connect(mapStateToProps)(Auth);
+export default connect(mapStateToProps, {getEmployee})(Auth);

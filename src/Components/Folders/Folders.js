@@ -1,14 +1,13 @@
 import React from 'react';
 
-class Folders extends React.Component{
+function Folders(props){
 
-    render(){
-        return (
-            <div>
-                Folders
-            </div>
-        )
-    }
+    return (
+        <div className='folder-container'>
+            <span>Folders</span>
+            
+        </div>
+    )
 }
 
 export default Folders;

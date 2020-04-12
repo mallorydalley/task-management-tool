@@ -1,0 +1,12 @@
+.task-container{
+    width: 230px;
+    min-height: 230px;
+    background-color: whitesmoke;
+    margin: 5px;
+}
+
+.assigned-thumbnail{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}

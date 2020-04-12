@@ -6,6 +6,7 @@ const express = require('express'),
       port = SERVER_PORT,
       authCtrl = require('./controllers/authController'),
       taskCtrl = require('./controllers/taskController');
+      folderCtrl = require('./controllers/folderController')
 
 const app = express();
 
@@ -30,5 +31,11 @@ massive({
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.post('/auth/logout', authCtrl.logout);
+
+//tasks endpoints
+app.get(`/api/all-tasks`, taskCtrl.getAllTasks)
+
+//folders endpoints
+app.get(`/api/folders`, folderCtrl.getFolders)
 
 app.listen(port, () => console.log(`Server running on ${port}`));

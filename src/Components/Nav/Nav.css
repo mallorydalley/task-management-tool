@@ -6,3 +6,13 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.nav-profile-pic{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.profile-info{
+    background-color: rgb(222, 222, 222);
+}
