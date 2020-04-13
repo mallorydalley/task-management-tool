@@ -37,7 +37,7 @@ class Folders extends React.Component{
           .catch((err) => console.log(err));
     }
     render(){
-        console.log(this.state.folders)
+        // console.log(this.state.folders)
         const mappedFolders = this.state.folders.map((folder, i) => (
             <div key={i}>
                 {folder.name}

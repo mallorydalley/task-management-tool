@@ -35,7 +35,9 @@ app.get(`/api/auth/me`, authCtrl.getMe)
 
 //tasks endpoints
 app.get(`/api/all-tasks`, taskCtrl.getAllTasks)
+app.get(`/api/task/:task_id`, taskCtrl.getOneTask)
 app.post(`/api/create-task`, taskCtrl.createTask)
+app.put(`/api/task/:task_id`, taskCtrl.editTask)
 
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)

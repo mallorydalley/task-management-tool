@@ -11,5 +11,6 @@ export default (
         <Route exact path='/auth' component={Auth} />
         <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/add-task' component={AddTask} />
+        <Route path='/edit/:task_id' component={AddTask} />
     </Switch>
 )

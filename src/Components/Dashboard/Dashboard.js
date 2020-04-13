@@ -36,7 +36,7 @@ class Dashboard extends React.Component{
     .catch(err => console.log(err))
   }
   render(){
-    console.log(this.state.newTasks)
+    // console.log(this.state.newTasks)
     const mappedTasks = this.state.newTasks.map((task, i) => (
       <Tasks key={i} task={task} />
     ))

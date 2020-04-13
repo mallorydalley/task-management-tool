@@ -36,6 +36,7 @@ module.exports = {
     req.session.user = employee[0]
     req.session.employee_id = employee[0].employee_id;
     res.status(202).send(req.session.user)
+    // console.log(req.session.employee_id)
   },
   logout: (req, res) => {
       req.session.destroy();
@@ -46,7 +47,7 @@ module.exports = {
     const db = req.app.get('db')
 
     await db.auth.get_me({employee_id})
-    .then(employee => res.status(200).send(employee))
+    .then(employee => res.status(200).send(employee), console.log(employee))
     .catch(err => {
       res.status(500).send('Failed to retrieve user.')
       console.log(err)

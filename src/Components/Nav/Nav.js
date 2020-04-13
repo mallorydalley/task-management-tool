@@ -17,20 +17,22 @@ function Nav(props) {
       .get(`/api/auth/me`)
       .then((res) => {
         console.log(res.data);
-        props.getEmployee(res.data[0]);
+        const {first_name, last_name, profile_pic} = res.data[0]
+        props.getEmployee(first_name, last_name, profile_pic);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    // getMe()
-    console.log("useEffect firing");
-  }, [getMe()]);
+    console.log("useEffect firing")
+    getMe()
+  }, []);
 
   const handleLogin = () => {
     axios.post(`/auth/login`, { email, password }).then((res) => {
       console.log(res.data)
-      props.getEmployee(res.data)
+      const { first_name, last_name, profile_pic } = res.data
+      props.getEmployee(first_name, last_name, profile_pic )
       props.history.push("/dashboard");
     });
   };
@@ -74,7 +76,8 @@ function Nav(props) {
             <button onClick={handleLogout}>Logout</button>
           </div>
           <div className="profile-info">
-            <span>{(props.first_name, props.last_name)}</span>
+            <span>{props.first_name}</span>
+            <span>{props.last_name}</span>
             <img
               className="nav-profile-pic"
               src={props.profile_pic}
