@@ -5,6 +5,12 @@
     margin: 5px;
 }
 
+#task-img{
+    height: 130px;
+    width: 210px;
+    margin-top: 5px;
+}
+
 .assigned-thumbnail{
     height: 30px;
     width: 30px;

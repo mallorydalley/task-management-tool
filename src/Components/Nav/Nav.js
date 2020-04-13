@@ -14,6 +14,8 @@ function Nav(props) {
 
   const handleLogin = () => {
     axios.post(`/auth/login`, { email, password }).then((res) => {
+      console.log(res.data)
+      props.getEmployee(res.data)
       props.history.push("/dashboard");
     });
   };
@@ -25,6 +27,14 @@ function Nav(props) {
     })
     .catch(err => console.log(err))
   };
+
+  const getMe = () => {
+    axios.get(`/api/auth/me`)
+    .then(res => {
+      console.log(res.data)
+      // props.getEmployee()
+    })
+  }
 
   return (
     <div>

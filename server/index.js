@@ -31,6 +31,7 @@ massive({
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.post('/auth/logout', authCtrl.logout);
+app.get(`/api/auth/me`, authCtrl.getMe)
 
 //tasks endpoints
 app.get(`/api/all-tasks`, taskCtrl.getAllTasks)

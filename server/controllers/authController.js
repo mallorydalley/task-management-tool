@@ -15,6 +15,7 @@ module.exports = {
 
     let newEmployee = await db.auth.register_employee({email, password:hash, first_name, last_name, profile_pic})
     req.session.user = newEmployee[0]
+    req.session.employee_id = newEmployee[0].employee_id
     res.status(201).send(req.session.user)
   },
   login: async (req, res) => {
@@ -33,10 +34,22 @@ module.exports = {
 
     delete employee[0].password;
     req.session.user = employee[0]
+    req.session.employee_id = employee[0].employee_id;
     res.status(202).send(req.session.user)
   },
   logout: (req, res) => {
       req.session.destroy();
       res.sendStatus(200);
+  },
+  getMe: async (req, res) => {
+    const {employee_id} = req.session;
+    const db = req.app.get('db')
+
+    await db.auth.get_me({employee_id})
+    .then(employee => res.status(200).send(employee))
+    .catch(err => {
+      res.status(500).send('Failed to retrieve user.')
+      console.log(err)
+    })
   }
 };
