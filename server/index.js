@@ -34,6 +34,7 @@ app.post('/auth/logout', authCtrl.logout);
 
 //tasks endpoints
 app.get(`/api/all-tasks`, taskCtrl.getAllTasks)
+app.post(`/api/create-task`, taskCtrl.createTask)
 
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)

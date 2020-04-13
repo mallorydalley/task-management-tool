@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import './Nav.css'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import axios from "axios";
 import {connect} from 'react-redux'
+import {getEmployee} from '../../redux/reducer'
 
 
 
@@ -45,14 +46,22 @@ function Nav(props) {
         </div>
       ) : (
         <div className="nav-bar">
-          <span>Logo</span>
+          <Link to='/dashboard'>
+            <span>Logo</span>
+          </Link>
           <div>
-            <button>Add Task</button>
+            <Link to="/add-task">
+              <button>Add Task</button>
+            </Link>
             <button onClick={handleLogout}>Logout</button>
           </div>
-          <div className='profile-info'>
-            <span>{props.first_name, props.last_name}</span>
-            <img className='nav-profile-pic' src={props.profile_pic} alt={props.first_name}/>
+          <div className="profile-info">
+            <span>{(props.first_name, props.last_name)}</span>
+            <img
+              className="nav-profile-pic"
+              src={props.profile_pic}
+              alt={props.first_name}
+            />
           </div>
         </div>
       )}
@@ -65,4 +74,4 @@ const mapStateToProps = reduxState => {
   return { first_name, last_name, profile_pic };
 }
 
-export default withRouter(connect(mapStateToProps)(Nav));
+export default withRouter(connect(mapStateToProps, {getEmployee})(Nav));

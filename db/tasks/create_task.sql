@@ -9,7 +9,7 @@ insert into tasks (
     ${title},
     ${img},
     ${description},
-    ${status},
-    ${employee_id},
-    ${folder_id}
+    'New',
+    2,
+    1
 );

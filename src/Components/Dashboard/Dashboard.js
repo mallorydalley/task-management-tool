@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import './Dashboard.css'
-import Tasks from '../Tasks/Tasks'
 import axios from 'axios';
+import Tasks from "../Tasks/Tasks";
+import Folders from '../Folders/Folders'
 
 class Dashboard extends React.Component{
   // const [tasks, setTasks] = useState([])
@@ -41,6 +42,7 @@ class Dashboard extends React.Component{
     ))
             return (
               <div>
+                <Folders />
                 <div className="dash">
                   <div className="posts-column">
                     <span>New</span>
