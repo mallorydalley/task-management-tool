@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './Nav.css'
 import {withRouter, Link} from 'react-router-dom'
 import axios from "axios";
@@ -11,6 +11,21 @@ function Nav(props) {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('')
   console.log(props)
+
+  const getMe = () => {
+    axios
+      .get(`/api/auth/me`)
+      .then((res) => {
+        console.log(res.data);
+        props.getEmployee(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    // getMe()
+    console.log("useEffect firing");
+  }, [getMe()]);
 
   const handleLogin = () => {
     axios.post(`/auth/login`, { email, password }).then((res) => {
@@ -28,13 +43,6 @@ function Nav(props) {
     .catch(err => console.log(err))
   };
 
-  const getMe = () => {
-    axios.get(`/api/auth/me`)
-    .then(res => {
-      console.log(res.data)
-      // props.getEmployee()
-    })
-  }
 
   return (
     <div>
