@@ -32,7 +32,9 @@ class Folders extends React.Component{
           .then((response) => {
             this.setState({ folders: response.data });
           })
-          .catch((err) => console.log(err));
+          .catch(err => {
+            console.log(err)
+          });
     }
     componentDidMount() {
       this.getFolders()

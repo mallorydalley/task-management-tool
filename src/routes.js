@@ -4,6 +4,7 @@ import Landing from './Components/Landing/Landing'
 import Auth from './Components/Auth/Auth'
 import Dashboard from './Components/Dashboard/Dashboard'
 import AddTask from './Components/AddTask/AddTask'
+import EditTask from './Components/EditTask/EditTask'
 
 export default (
     <Switch>

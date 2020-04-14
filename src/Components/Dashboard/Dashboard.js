@@ -27,11 +27,20 @@ class Dashboard extends React.Component{
   componentDidMount(){
     this.getAllTasks()
   }
+
   getAllTasks(){
     axios.get(`/api/all-tasks`)
     .then(response => {
       console.log(response.data)
       this.setState({newTasks: response.data})
+
+      //setState to newTasks, inProgress, Completed based on the status
+      //filter for status
+      //if(response.data)
+      //response.data.filter(function(task){
+
+      // })
+
     })
     .catch(err => console.log(err))
   }

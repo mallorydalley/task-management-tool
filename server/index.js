@@ -5,8 +5,8 @@ const express = require('express'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       port = SERVER_PORT,
       authCtrl = require('./controllers/authController'),
-      taskCtrl = require('./controllers/taskController');
-      folderCtrl = require('./controllers/folderController')
+      taskCtrl = require('./controllers/taskController'),
+      folderCtrl = require('./controllers/folderController');
 
 const app = express();
 
@@ -42,4 +42,13 @@ app.put(`/api/task/:task_id`, taskCtrl.editTask)
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)
 
-app.listen(port, () => console.log(`Server running on ${port}`));
+let server = app.listen(port, () => console.log(`Server running on ${port}`));
+
+// socket.io
+// const io = require('socket.io')(3001)
+
+
+// io.on('connection', socket => {
+//     console.log('new User')
+//     socket.emit('chat-message', 'Hello World')
+// }) 

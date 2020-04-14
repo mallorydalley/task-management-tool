@@ -7,22 +7,15 @@ import {Link, Route} from 'react-router-dom'
 
 
 function AddTask(props) {
-    const [title, setTitle] = useState('')
-    const [status, setStatus] = useState('')
-    const [folder_id, setFolderId] = useState('')
-    const [employee_id, setEmpId] = useState('')
-    const [img, setImg] = useState('')
-    const [description, setDescription] = useState('')
-  const options = [
-    'New', 'In Progress', 'Complete'
-  ]
-  const defaultOption = options[0]
+  const [title, setTitle] = useState('')
+  const [status, setStatus] = useState('')
+  const [folder_id, setFolderId] = useState(1)
+  const [employee_id, setEmpId] = useState(1)
+  const [img, setImg] = useState('')
+  const [description, setDescription] = useState('')
 
+  
 
-    
-    // useEffect(() => {
-    //   getOneTask()
-    // }, [])
 
     const getOneTask = () => {
       axios.get(`/api/task/${props.match.params.task_id}`)
@@ -35,8 +28,14 @@ function AddTask(props) {
           setImg(res.data[0].img)
           setDescription(res.data[0].description)
         })
-        .catch(err => console.log(err))
-    }
+        .catch(err => {
+          console.log(err)
+        });
+    } 
+
+     useEffect(() => {
+      getOneTask()
+    }, [])
 
     const createTask = () => {
       axios.post(`/api/create-task`, {title, img, description, status, employee_id, folder_id})
@@ -46,16 +45,16 @@ function AddTask(props) {
       .catch(err => console.log(err))
     }
 
-    const editTask = (task_id, title, img, description) => {
-      axios.put(`/api/task/${task_id}`, {title, img, description})
+  const editTask = () => {
+      axios.put(`/api/task/${props.match.params.task_id}`, { title, img, description, status, employee_id, folder_id})
       .then(() => {
         props.history.push('/dashboard')
       })
       .catch(err => console.log(err))
     }
 
-    console.log(props)
-    console.log(title)
+ 
+  console.log(status)
     return (
       <div className='add-task-page'>
         <div className='add-task-container'>
@@ -64,12 +63,14 @@ function AddTask(props) {
             placeholder="Title..."
             onChange={(e) => setTitle(e.target.value)}
           />
+          <span>Choose Folder</span>
           {/* <Dropdown options={options}  value={defaultOption} placeholder="Select an option" /> */}
-          <select id="status">
-            <option value={options[0]}>New</option>
-            <option value={options[1]}>In Progress</option>
-            <option value={options[2]}>Complete</option>
+          <select id="status" value={status} onChange={e => setStatus(e.target.value)}>
+            <option value='New'>New</option>
+            <option value='In Progress'>In Progress</option>
+            <option value='Complete'>Complete</option>
           </select>
+
           <input
             value={img}
             placeholder="Attach image"
@@ -81,7 +82,21 @@ function AddTask(props) {
             onChange={e => setDescription(e.target.value)}
           />
 
-          {/* <button onClick={createTask}>Add Task</button> */}
+          {/* socket.io */}
+          {/* <div className='message-container'>
+            <form className='send-container'>
+              <input 
+                type='text'    
+                id='message-input' 
+              />
+              <button 
+                type='submit' id='send-button'
+                > Send
+                </button>
+            </form>
+          </div> */}
+
+         
 
           <Route 
             path='/add-task'
