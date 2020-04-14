@@ -24,9 +24,7 @@ class Folders extends React.Component{
             folders: []
         }
     }
-    componentDidMount(){
-        this.getFolders()
-    }
+    
 
     getFolders(){
         axios
@@ -35,6 +33,9 @@ class Folders extends React.Component{
             this.setState({ folders: response.data });
           })
           .catch((err) => console.log(err));
+    }
+    componentDidMount() {
+      this.getFolders()
     }
     render(){
         // console.log(this.state.folders)

@@ -1,8 +1,8 @@
 module.exports = {
-    getAllTasks: async(req, res) => {
+    getAllTasks: async (req, res) => {
         const db = req.app.get('db')
 
-        db.tasks.get_all_tasks()
+        await db.tasks.get_all_tasks()
           .then(tasks => res.status(200).send(tasks))
           .catch((err) => res.status(500).send(err));
     },
@@ -10,7 +10,7 @@ module.exports = {
       const db = req.app.get('db')
       const {task_id} = req.params
 
-      db.tasks.get_one_task(task_id)
+      await db.tasks.get_one_task(task_id)
       .then(result => res.status(200).send(result))
       .catch(err => {
         res.status(500).send('Oops!')

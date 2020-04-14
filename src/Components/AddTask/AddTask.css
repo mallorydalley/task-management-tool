@@ -1,0 +1,15 @@
+.add-task-page{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.add-task-container{
+    background-color: lightskyblue;
+    height: 70vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 30px;
+}

@@ -10,6 +10,6 @@ insert into tasks (
     ${img},
     ${description},
     'New',
-    ${employee_id},
+    1,
     1
 );

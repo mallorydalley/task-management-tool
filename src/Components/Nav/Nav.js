@@ -24,8 +24,8 @@ function Nav(props) {
   };
 
   useEffect(() => {
-    console.log("useEffect firing")
-    getMe()
+    // console.log("useEffect firing")
+    // getMe()
   }, []);
 
   const handleLogin = () => {

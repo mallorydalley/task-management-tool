@@ -1,5 +1,5 @@
 module.exports = {
-    getFolders: async (req, res) => {
+    getFolders: (req, res) => {
         const db = req.app.get('db')
 
         db.folders.get_folders()
