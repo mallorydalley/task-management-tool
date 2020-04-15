@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import './AddTask.css'
 import axios from 'axios'
 import {Link, Route} from 'react-router-dom'
+import FolderSearch from './FolderSearch/FolderSearch'
+import EmployeeSearch from './EmployeeSearch/EmployeeSearch'
 // import Dropdown from 'react-dropdown'
 // import 'react-dropdown/style.css'
 
@@ -13,9 +15,25 @@ function AddTask(props) {
   const [employee_id, setEmpId] = useState(1)
   const [img, setImg] = useState('')
   const [description, setDescription] = useState('')
+  const [chooseFolder, setChooseFolder] = useState(true)
+  const [assign, setAssign] = useState(true)
+  const [searchFolder, setSearchFolder] = useState('')
+  const [folderResults, setFolderResults] = useState([])
 
+  const people = [
+    "Siri",
+    "Alexa",
+    "Google",
+    "Facebook",
+    "Twitter",
+    "Linkedin",
+    "Sinkedin"
+  ];
   
-
+  useEffect(() => {
+    const results = people.filter(person => person.toLowerCase().includes(searchFolder))
+    setFolderResults(results)
+  }, [searchFolder])
 
     const getOneTask = () => {
       axios.get(`/api/task/${props.match.params.task_id}`)
@@ -53,8 +71,22 @@ function AddTask(props) {
       .catch(err => console.log(err))
     }
 
- 
-  console.log(status)
+    const folderSearch = () => {
+      setChooseFolder(!chooseFolder)
+    }
+
+    const assignEmployee = () => {
+      setAssign(!assign)
+    }
+
+    const handleFolder = e => {
+      setSearchFolder(e.target.value)
+    }
+
+  
+
+  console.log(chooseFolder)
+  // console.log(status)
     return (
       <div className='add-task-page'>
         <div className='add-task-container'>
@@ -63,7 +95,43 @@ function AddTask(props) {
             placeholder="Title..."
             onChange={(e) => setTitle(e.target.value)}
           />
-          <span>Choose Folder</span>
+          <FolderSearch />
+          <EmployeeSearch />
+          {/* Folder Search */}
+          {/* {chooseFolder
+            ? (
+              <span onClick={folderSearch}>Choose Folder</span>
+            ) : (
+              <div>
+                <input 
+                  placeholder='Search folders' 
+                  value={searchFolder}
+                  onChange={handleFolder}
+                />
+                <button>Add</button>
+                <ul>
+                  {folderResults.map(item => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )
+          } */}
+
+          {/* Assign Employee */}
+          {/* {assign
+            ? (
+              <span onClick={assignEmployee}>Assign +</span>
+            ) : (
+              <div>
+                <input placeholder='Search' />
+                <button>Add</button>
+              </div>
+            )
+          } */}
+
+          
+
           {/* <Dropdown options={options}  value={defaultOption} placeholder="Select an option" /> */}
           <select id="status" value={status} onChange={e => setStatus(e.target.value)}>
             <option value='New'>New</option>
