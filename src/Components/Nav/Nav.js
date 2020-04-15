@@ -12,21 +12,7 @@ function Nav(props) {
   const [password, setPass] = useState('')
   console.log(props)
 
-  const getMe = () => {
-    axios
-      .get(`/api/auth/me`)
-      .then((res) => {
-        console.log(res.data);
-        const {first_name, last_name, profile_pic} = res.data[0]
-        props.getEmployee(first_name, last_name, profile_pic);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    // console.log("useEffect firing")
-    // getMe()
-  }, []);
+  
 
   const handleLogin = () => {
     axios.post(`/auth/login`, { email, password }).then((res) => {
@@ -45,6 +31,22 @@ function Nav(props) {
     .catch(err => console.log(err))
   };
 
+  const checkSession = () => {
+    if(props.first_name===''){
+      axios.get(`/api/session`)
+      .then(res => {
+        const {first_name, last_name, profile_pic} = res.data
+        props.getEmployee(first_name, last_name, profile_pic)
+      })
+      .catch(err => console.log(err))
+      //.catch(err => alert('Please log in.))
+    }
+  }
+
+  useEffect(() => {
+    checkSession()
+  }, []);
+  
 
   return (
     <div>

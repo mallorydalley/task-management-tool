@@ -21,7 +21,9 @@ class Dashboard extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      newTasks: []
+      newTasks: [],
+      inProgress: [],
+      complete: []
     }
   }
   componentDidMount(){
@@ -37,13 +39,17 @@ class Dashboard extends React.Component{
       //setState to newTasks, inProgress, Completed based on the status
       //filter for status
       //if(response.data)
-      //response.data.filter(function(task){
 
-      // })
+      // const results = response.data.filter(ele => {
+      // console.log(ele.status)
+        // if(ele.status === 'Complete'){
+  //         this.setState({completed: })
+  //       }
+  //     })
 
-    })
-    .catch(err => console.log(err))
-  }
+  //   })
+  //   .catch(err => console.log(err))
+  // }
   render(){
     // console.log(this.state.newTasks)
     const mappedTasks = this.state.newTasks.map((task, i) => (

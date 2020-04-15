@@ -83,7 +83,14 @@ function AddTask(props) {
       setSearchFolder(e.target.value)
     }
 
-  
+  useEffect(() => {
+    setTitle('')
+    setStatus('New')
+    setFolderId(0)
+    setEmpId(0)
+    setImg('')
+    setDescription('')
+  }, [props.match.params.task_id])
 
   console.log(chooseFolder)
   // console.log(status)

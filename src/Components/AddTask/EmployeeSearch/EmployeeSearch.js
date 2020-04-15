@@ -41,6 +41,7 @@ function EmployeeSearch(props){
                         value={searchTerm}
                         onChange={handleChange}
                     />
+                    <button onClick={handleToggle}>Assign</button>
                     <ul>
                         {searchResults.map((item, i) => (
                             <li key={i}>{item}</li>

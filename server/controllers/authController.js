@@ -32,6 +32,8 @@ module.exports = {
         return res.status(401).send(`Password is incorrect`)
     }
 
+    
+
     delete employee[0].password;
     req.session.user = employee[0]
     req.session.employee_id = employee[0].employee_id;
@@ -42,15 +44,9 @@ module.exports = {
       req.session.destroy();
       res.sendStatus(200);
   },
-  getMe: async (req, res) => {
-    const {employee_id} = req.session;
-    const db = req.app.get('db')
-
-    await db.auth.get_me({employee_id})
-    .then(employee => res.status(200).send(employee), console.log(employee))
-    .catch(err => {
-      res.status(500).send('Failed to retrieve user.')
-      console.log(err)
-    })
+  checkSession: (req, res) => {
+    if(req.session.user){
+      res.status(200).send(req.session.user)
+    } 
   }
 };

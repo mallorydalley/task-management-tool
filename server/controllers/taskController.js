@@ -3,7 +3,7 @@ module.exports = {
         const db = req.app.get('db')
 
         await db.tasks.get_all_tasks()
-          .then(tasksss => res.status(200).send(tasksss))
+          .then(tasks => res.status(200).send(tasks))
           .catch((err) => res.status(500).send(err));
     },
     getOneTask: (req, res) => {
@@ -36,7 +36,7 @@ module.exports = {
       db.tasks.edit_task({ task_id, title, img, description, status, employee_id, folder_id })
       .then(result => {
         res.status(200).send(result)
-      })
+      }) 
       .catch(err => {
         res.status(500).send('Oops!')
         console.log(err)

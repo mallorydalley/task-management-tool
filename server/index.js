@@ -31,7 +31,7 @@ massive({
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.post('/auth/logout', authCtrl.logout);
-app.get(`/api/auth/me`, authCtrl.getMe)
+app.get(`/api/session`, authCtrl.checkSession)
 
 //tasks endpoints
 app.get(`/api/all-tasks`, taskCtrl.getAllTasks)
@@ -42,7 +42,7 @@ app.put(`/api/task/:task_id`, taskCtrl.editTask)
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)
 
-let server = app.listen(port, () => console.log(`Server running on ${port}`));
+app.listen(port, () => console.log(`Server running on ${port}`));
 
 // socket.io
 // const io = require('socket.io')(3001)
