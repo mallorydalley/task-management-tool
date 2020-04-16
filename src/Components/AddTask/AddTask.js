@@ -4,6 +4,7 @@ import axios from 'axios'
 import {Link, Route} from 'react-router-dom'
 import FolderSearch from './FolderSearch/FolderSearch'
 import EmployeeSearch from './EmployeeSearch/EmployeeSearch'
+import EmSearch from './EmployeeSearch/EmSearch'
 // import Dropdown from 'react-dropdown'
 // import 'react-dropdown/style.css'
 
@@ -104,6 +105,7 @@ function AddTask(props) {
           />
           <FolderSearch />
           <EmployeeSearch />
+          <EmSearch />
           {/* Folder Search */}
           {/* {chooseFolder
             ? (

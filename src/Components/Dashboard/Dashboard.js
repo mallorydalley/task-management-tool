@@ -12,17 +12,15 @@ function Dashboard(props){
   const getAllTasks = () => {
     axios.get(`/api/all-tasks`)
     .then(response => {
-      console.log(response.data)
-      // setNewTasks(response.data)
-
+      // console.log(response.data)
       response.data.filter(ele => {
-      // console.log(ele.status)
         if(ele.status === 'Complete'){
-          setComplete([ele]);
+          setComplete((complete) => [...complete, ele]);
         } else if (ele.status === 'In Progress'){
-          setInProgress([ele]);
+          setInProgress((inProgress) => [...inProgress, ele]);
         }else{
-          setNewTasks([...newTasks, ele]);
+          console.log(ele)
+          setNewTasks((newTasks) => [...newTasks, ele]);
         }
       })
 

@@ -29,27 +29,49 @@ function EmployeeSearch(props){
         getEmployee()
     }, [])
 
+   
+
     const handleChange = e => {
         setSearchTerm(e.target.value)
     }
+
+    // let showEmployees = employees
+    // .filter((person, i) => {
+    //     return person.includes(searchTerm)
+    // })
+    // .map((person, i) => {
+    //         return <h4 key={i}>{person}</h4>
+    //     })
 
     const handleToggle = () => {
         setStartSearch(!startSearch)
     }
 
-    useEffect(() => {
-        const results = employees.filter(person => {
+    // useEffect(() => {
+    //     const results = employees.filter(person => {
             // console.log(person)
-            const name = `${person.first_name} ${person.last_name}`
-            console.log(name)
+        //     const name = `${person.first_name} ${person.last_name}`
+        //     console.log(name)
 
-            name.toLowerCase().includes(searchTerm.toLowerCase())
-        })
-        console.log(results)
-        setSearchResults(results)
-    }, [searchTerm])
+        //     if (name.toLowerCase().includes(searchTerm.toLowerCase())){
+        //         return name
+        //     } else{
+        //         return null
+        //     }
+        // })
+        // console.log(results)
+        // console.log(searchResults)
+        // setSearchResults(results)
+        // setSearchResults([...results])
+        // setSearchResults([...searchResults, results])
+        // setSearchResults((searchResults) => [...searchResults, results])
+    // }, [searchTerm])
 
-    console.log(employees)
+    const handleSearch = () => {
+
+    }
+
+    // console.log(employees)
     console.log(searchResults)
     return (
         <div>
@@ -65,12 +87,15 @@ function EmployeeSearch(props){
                         onChange={handleChange}
                     />
                     <button onClick={handleToggle}>Cancel</button>
-                    <ul>
+
+                    {employees}
+                    {/* {showEmployees} */}
+                    {/* <ul>
                         {searchResults.map((item, i) => (
-                            <li key={i}>{item}</li>
-                            //onclick adds to array that maps and displays who is assigned
-                        ))}
-                    </ul>   
+                            <li key={i}>{item}</li> */}
+                            {/* onclick adds to array that maps and displays who is assigned
+                         ))}
+                    </ul>    */}
                 </div>
             )}
             
