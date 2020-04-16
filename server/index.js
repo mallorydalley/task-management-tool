@@ -6,7 +6,9 @@ const express = require('express'),
       port = SERVER_PORT,
       authCtrl = require('./controllers/authController'),
       taskCtrl = require('./controllers/taskController'),
-      folderCtrl = require('./controllers/folderController');
+      folderCtrl = require('./controllers/folderController'),
+      employeeCtrl = require('./controllers/employeeController')
+
 
 const app = express();
 
@@ -32,6 +34,9 @@ app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.post('/auth/logout', authCtrl.logout);
 app.get(`/api/session`, authCtrl.checkSession)
+
+//employee endpoints
+app.get(`/api/employees`, employeeCtrl.getEmployees)
 
 //tasks endpoints
 app.get(`/api/all-tasks`, taskCtrl.getAllTasks)

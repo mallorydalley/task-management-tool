@@ -68,8 +68,8 @@ function FolderSearch(props){
         setSearchTerm(e.target.value)
     }
 
-    console.log(folderResults)
-    console.log(folders)
+    // console.log(folderResults)
+    // console.log(folders)
     return (
         <div>
         {chooseFolder

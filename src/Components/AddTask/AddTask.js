@@ -92,7 +92,7 @@ function AddTask(props) {
     setDescription('')
   }, [props.match.params.task_id])
 
-  console.log(chooseFolder)
+  // console.log(chooseFolder)
   // console.log(status)
     return (
       <div className='add-task-page'>

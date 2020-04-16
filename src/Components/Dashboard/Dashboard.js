@@ -4,75 +4,68 @@ import axios from 'axios';
 import Tasks from "../Tasks/Tasks";
 import Folders from '../Folders/Folders'
 
-class Dashboard extends React.Component{
-  // const [tasks, setTasks] = useState([])
-  // const getAllTasks = () => {
-  //   axios.get(`/api/all-tasks`)
-  //   .then(res => {
-  //     console.log(res.data)
-  //     setTasks([...tasks, {
-  //       id: tasks.length,
-  //       value: res.data
-  //     }]);
-  //   })
-  //   .catch(err => console.log(err))
-  // }
+function Dashboard(props){
+  const [newTasks, setNewTasks] = useState([])
+  const [inProgress, setInProgress] = useState([])
+  const [complete, setComplete] = useState([])
 
-  constructor(props){
-    super(props)
-    this.state = {
-      newTasks: [],
-      inProgress: [],
-      complete: []
-    }
-  }
-  componentDidMount(){
-    this.getAllTasks()
-  }
-
-  getAllTasks(){
+  const getAllTasks = () => {
     axios.get(`/api/all-tasks`)
     .then(response => {
       console.log(response.data)
-      this.setState({newTasks: response.data})
+      // setNewTasks(response.data)
 
-      //setState to newTasks, inProgress, Completed based on the status
-      //filter for status
-      //if(response.data)
-
-      // const results = response.data.filter(ele => {
+      response.data.filter(ele => {
       // console.log(ele.status)
-        // if(ele.status === 'Complete'){
-  //         this.setState({completed: })
-  //       }
-  //     })
+        if(ele.status === 'Complete'){
+          setComplete([ele]);
+        } else if (ele.status === 'In Progress'){
+          setInProgress([ele]);
+        }else{
+          setNewTasks([...newTasks, ele]);
+        }
+      })
 
-  //   })
-  //   .catch(err => console.log(err))
-  // }
-  render(){
-    // console.log(this.state.newTasks)
-    const mappedTasks = this.state.newTasks.map((task, i) => (
-      <Tasks key={i} task={task} />
-    ))
-            return (
-              <div>
-                <Folders />
-                <div className="dash">
-                  <div className="posts-column">
-                    <span>New</span>
-                    {mappedTasks}
-                  </div>
-                  <div className="posts-column">
-                    <span>In Progress</span>
-                  </div>
-                  <div className="posts-column">
-                    <span>Completed</span>
-                  </div>
-                </div>
-              </div>
-            );
-          }
+    })
+    .catch(err => console.log(err))
+}
+
+  useEffect(() => {
+    getAllTasks()
+  }, [])
+  
+  let mappedNewTasks = newTasks.map((task, i) => (
+    <Tasks key={i} task={task} />
+  ))
+  let mappedInProgress = inProgress.map((task, i) => (
+    <Tasks key={i} task={task} />
+  ))
+  let mappedComplete = complete.map((task, i) => (
+    <Tasks key={i} task={task} />
+  ))
+
+  console.log(newTasks)
+  // console.log(inProgress)
+  // console.log(complete)
+  return (
+    <div>
+      <Folders />
+      <div className="dash">
+        <div className="posts-column">
+          <span>New</span>
+          {mappedNewTasks}
+        </div>
+        <div className="posts-column">
+          <span>In Progress</span>
+          {mappedInProgress}
+        </div>
+        <div className="posts-column">
+          <span>Complete</span>
+          {mappedComplete}
+        </div>
+      </div>
+    </div>
+  )         
 }
 
 export default Dashboard;
