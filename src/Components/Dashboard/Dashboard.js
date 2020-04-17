@@ -19,7 +19,7 @@ function Dashboard(props){
         } else if (ele.status === 'In Progress'){
           setInProgress((inProgress) => [...inProgress, ele]);
         }else{
-          console.log(ele)
+          // console.log(ele)
           setNewTasks((newTasks) => [...newTasks, ele]);
         }
       })
@@ -42,7 +42,7 @@ function Dashboard(props){
     <Tasks key={i} task={task} />
   ))
 
-  console.log(newTasks)
+  // console.log(newTasks)
   // console.log(inProgress)
   // console.log(complete)
   return (

@@ -37,6 +37,7 @@ app.get(`/api/session`, authCtrl.checkSession)
 
 //employee endpoints
 app.get(`/api/employees`, employeeCtrl.getEmployees)
+app.get(`/api/employee/:employee_id`, employeeCtrl.getOneEmployee)
 
 //tasks endpoints
 app.get(`/api/all-tasks`, taskCtrl.getAllTasks)

@@ -10,7 +10,7 @@ class EmSearch extends React.Component{
             searchTerm: '',
             searchResults: [],
             employees: [],
-            assigned: []
+            assigned: this.props.assigned
         }
     }
     getEmployee = () => {
@@ -33,16 +33,17 @@ class EmSearch extends React.Component{
         this.setState({startSearch: !this.state.startSearch})
         // setStartSearch(!startSearch)
     }
-    handleAssign = (person) => {
-        this.setState({assigned: [...this.state.assigned, person]})
-    }
+    
+    
     render(){
         const {searchResults, searchTerm, startSearch, employees, assigned} = this.state
+        // const {assigned} = this.props
+        
 
         const filteredSearch = employees.filter((person, i) => {
-            console.log(person)
+            // console.log(person)
             let name = `${person.first_name} ${person.last_name}`
-            console.log(name)
+            // console.log(name)
 
             if(name.toLowerCase().includes(this.state.searchTerm.toLowerCase())){
                 return name
@@ -51,14 +52,23 @@ class EmSearch extends React.Component{
             }
         })
 
+        // const showAssigned = assigned.map((person, i) => (
+        //     <div key={person.employee_id} className='search-result'>
+        //         <img className='em-search-image' src={person.profile_pic} />
+        //         <span className='name-result'>{person.first_name} {person.last_name} </span>
+        //     </div>
+        // ))
+
         // console.log(employees)
         // console.log(filteredSearch)
         console.log(assigned)
+        console.log(this.props)
         return(
             <div>
+                {/* {showAssigned} */}
                 {startSearch
                     ? (
-                        <span onClick={this.handleToggle}>Assign Class</span>
+                        <span onClick={this.handleToggle}>Assign +</span>
                     ) : (
                         <div>
                             <input
@@ -67,6 +77,7 @@ class EmSearch extends React.Component{
                                 value={searchTerm}
                                 onChange={this.handleChange}
                             />
+                            {/* <button onClick={this.handleAssign}>Assign</button> */}
                             <button onClick={this.handleToggle}>Cancel</button>
 
                             {/* {employees} */}
@@ -76,7 +87,7 @@ class EmSearch extends React.Component{
                             // console.log(person)
                             // let {first_name} = person
                             return <li key={i}>
-                                <div className='search-result' onClick={this.handleAssign}>
+                                <div className='search-result' onClick={() => {this.props.handleAssign(person)}}>
                                     <img className = 'em-search-image' src={person.profile_pic} />
                                     <span className='name-result'>{person.first_name} {person.last_name} </span>
                                 </div>

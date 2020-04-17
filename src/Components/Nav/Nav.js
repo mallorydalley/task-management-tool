@@ -10,6 +10,7 @@ import {getEmployee} from '../../redux/reducer'
 function Nav(props) {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('')
+  const [showLogin, setShowLogin] = useState(false)
   console.log(props)
 
   
@@ -47,24 +48,36 @@ function Nav(props) {
     checkSession()
   }, []);
   
+  const toggleLogin = () => {
+    setShowLogin(!showLogin)
+  }
 
   return (
     <div>
       {props.location.pathname === "/" ? (
         <div className="nav-bar">
           <span>Logo</span>
-          <input
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPass(e.target.value)}
-          />
-          <button onClick={handleLogin}>Login</button>
+          
+         { showLogin
+         ?(
+          <div>
+            <input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPass(e.target.value)}
+            />
+            <button onClick={handleLogin}>Send</button>
+          </div>
+          ):(
+            <button onClick={toggleLogin}>Login</button>
+          )
+          }
         </div>
       ) : (
         <div className="nav-bar">

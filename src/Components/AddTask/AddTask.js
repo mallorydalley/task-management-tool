@@ -5,15 +5,13 @@ import {Link, Route} from 'react-router-dom'
 import FolderSearch from './FolderSearch/FolderSearch'
 import EmployeeSearch from './EmployeeSearch/EmployeeSearch'
 import EmSearch from './EmployeeSearch/EmSearch'
-// import Dropdown from 'react-dropdown'
-// import 'react-dropdown/style.css'
 
 
 function AddTask(props) {
   const [title, setTitle] = useState('')
   const [status, setStatus] = useState('')
   const [folder_id, setFolderId] = useState(1)
-  const [employee_id, setEmpId] = useState(1)
+  const [employee_id, setEmpId] = useState(0)
   const [img, setImg] = useState('')
   const [description, setDescription] = useState('')
   const [chooseFolder, setChooseFolder] = useState(true)
@@ -21,42 +19,43 @@ function AddTask(props) {
   const [searchFolder, setSearchFolder] = useState('')
   const [folderResults, setFolderResults] = useState([])
 
-  const people = [
-    "Siri",
-    "Alexa",
-    "Google",
-    "Facebook",
-    "Twitter",
-    "Linkedin",
-    "Sinkedin"
-  ];
+  const [startSearch, setStartSearch] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [assigned, setAssigned] = useState([])
   
-  useEffect(() => {
-    const results = people.filter(person => person.toLowerCase().includes(searchFolder))
-    setFolderResults(results)
-  }, [searchFolder])
+  // useEffect(() => {
+  //   const results = people.filter(person => person.toLowerCase().includes(searchFolder))
+  //   setFolderResults(results)
+  // }, [searchFolder])
 
-    const getOneTask = () => {
-      axios.get(`/api/task/${props.match.params.task_id}`)
+    const getOneTask = async () => {
+      await axios.get(`/api/task/${props.match.params.task_id}`)
         .then(res => {
           console.log(res.data)
+          const {first_name, last_name, profile_pic} = res.data[0]
           setTitle(res.data[0].title)
           setStatus(res.data[0].status)
           setFolderId(res.data[0].folder_id)
           setEmpId(res.data[0].employee_id)
+          setAssigned([...assigned, {first_name, last_name, profile_pic}])
           setImg(res.data[0].img)
           setDescription(res.data[0].description)
+
+          
         })
         .catch(err => {
           console.log(err)
         });
     } 
 
-     useEffect(() => {
-      getOneTask()
-    }, [])
+  useEffect(() => {
+    getOneTask()
+  }, [])
+
+
 
     const createTask = () => {
+      const {employee_id} = assigned[0]
       axios.post(`/api/create-task`, {title, img, description, status, employee_id, folder_id})
       .then(() => {
         props.history.push('/dashboard')
@@ -64,6 +63,7 @@ function AddTask(props) {
       .catch(err => console.log(err))
     }
 
+    console.log(employee_id)
   const editTask = () => {
       axios.put(`/api/task/${props.match.params.task_id}`, { title, img, description, status, employee_id, folder_id})
       .then(() => {
@@ -89,12 +89,48 @@ function AddTask(props) {
     setStatus('New')
     setFolderId(0)
     setEmpId(0)
+    setAssigned([])
     setImg('')
     setDescription('')
   }, [props.match.params.task_id])
 
-  // console.log(chooseFolder)
-  // console.log(status)
+  
+  console.log(employee_id)
+
+  // const getOneEmp = async () => {
+  //   await axios.get(`/api/employee/${employee_id}`)
+  //     .then(res => {
+  //       console.log(res.data)
+  //       setAssigned((assigned) => [...assigned, res.data])
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+
+  // useEffect(() => {
+  //   getOneEmp()
+  // }, [])
+
+  // console.log(employee_id)
+
+  const handleAssign = (person) => {
+    //if statement that doesn't allow you to add people twice
+    setAssigned((assigned) => [...assigned, person]);
+  }
+  const cancelAssign = () => {
+    setAssigned([])
+  }
+
+  //UseEffect?
+  const showAssigned = assigned.map((person, i) => (
+    <div key={i} className='search-result'>
+      <img className='em-search-image' src={person.profile_pic} />
+      <span className='name-result'>{person.first_name} {person.last_name} </span>
+      <button onclick={cancelAssign}>X</button>
+    </div>
+  )) 
+
+  
+  console.log(assigned)
     return (
       <div className='add-task-page'>
         <div className='add-task-container'>
@@ -104,41 +140,11 @@ function AddTask(props) {
             onChange={(e) => setTitle(e.target.value)}
           />
           <FolderSearch />
-          <EmployeeSearch />
-          <EmSearch />
-          {/* Folder Search */}
-          {/* {chooseFolder
-            ? (
-              <span onClick={folderSearch}>Choose Folder</span>
-            ) : (
-              <div>
-                <input 
-                  placeholder='Search folders' 
-                  value={searchFolder}
-                  onChange={handleFolder}
-                />
-                <button>Add</button>
-                <ul>
-                  {folderResults.map(item => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )
-          } */}
-
-          {/* Assign Employee */}
-          {/* {assign
-            ? (
-              <span onClick={assignEmployee}>Assign +</span>
-            ) : (
-              <div>
-                <input placeholder='Search' />
-                <button>Add</button>
-              </div>
-            )
-          } */}
-
+        {showAssigned}
+          <EmSearch 
+            assigned={assigned}
+            handleAssign={handleAssign}
+          />
           
 
           {/* <Dropdown options={options}  value={defaultOption} placeholder="Select an option" /> */}

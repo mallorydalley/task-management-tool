@@ -1,1 +1,1 @@
-select first_name, last_name, profile_pic from employees;
+select employee_id, first_name, last_name, profile_pic from employees;

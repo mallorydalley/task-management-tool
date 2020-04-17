@@ -1,2 +1,7 @@
-select * from tasks
-where task_id = $1;
+-- select * from tasks
+-- where task_id = $1;
+
+select t.task_id, t.title, t.img, t.description, t.status, e.first_name, e.last_name, e.profile_pic, e.employee_id from employees e
+join tasks t on t.employee_id = e.employee_id
+where t.task_id = $1;
+

@@ -1,5 +1,5 @@
 ul {
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     list-style-type: none;
     display: flex;
     align-items: center;
@@ -30,10 +30,10 @@ li{
     border-radius: 50%;
     margin-right: 5px;
     margin-top: 2px;
-    background-color: lightslategray;
+    /* background-color: lightslategray; */
 }
 
 .name-result{
     font-size: small;
-    background-color: lightseagreen;
+    /* background-color: lightseagreen; */
 }

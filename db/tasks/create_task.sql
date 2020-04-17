@@ -9,7 +9,7 @@ insert into tasks (
     ${title},
     ${img},
     ${description},
-    'New',
-    1,
+    ${status},
+    ${employee_id},
     1
 );
