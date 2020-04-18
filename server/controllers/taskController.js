@@ -1,8 +1,9 @@
 module.exports = {
     getAllTasks: async (req, res) => {
         const db = req.app.get('db')
+        const {folder_id} = req.params
 
-        await db.tasks.get_all_tasks()
+        await db.tasks.get_all_tasks(folder_id)
           .then(tasks => res.status(200).send(tasks))
           .catch((err) => res.status(500).send(err));
     },

@@ -16,11 +16,12 @@ function AddTask(props) {
   const [description, setDescription] = useState('')
   const [chooseFolder, setChooseFolder] = useState(true)
   const [assign, setAssign] = useState(true)
+  const [selectedFolder, setSelectedFolder] = useState([])
   const [searchFolder, setSearchFolder] = useState('')
-  const [folderResults, setFolderResults] = useState([])
+  // const [folderResults, setFolderResults] = useState([])
 
-  const [startSearch, setStartSearch] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('')
+  // const [startSearch, setStartSearch] = useState(true)
+  // const [searchTerm, setSearchTerm] = useState('')
   const [assigned, setAssigned] = useState([])
   
   // useEffect(() => {
@@ -117,10 +118,22 @@ function AddTask(props) {
     setAssigned((assigned) => [...assigned, person]);
   }
   const cancelAssign = () => {
-    setAssigned([])
+    setAssigned((assigned) => [])
   }
 
-  //UseEffect?
+  const handleSelectFolder = (folder) => {
+    //if statement that doesn't allow you to add people twice
+    setSelectedFolder((selectFolder) => [...selectFolder, folder]);
+  }
+
+  const showSelectedFolder = selectedFolder.map((folder, i) => (
+    <div key={i} className='search-result'>
+      <span className='name-result'>{folder.name}</span>
+      <button onclick={cancelAssign}>X</button>
+    </div>
+  ))
+
+  
   const showAssigned = assigned.map((person, i) => (
     <div key={i} className='search-result'>
       <img className='em-search-image' src={person.profile_pic} />
@@ -139,7 +152,13 @@ function AddTask(props) {
             placeholder="Title..."
             onChange={(e) => setTitle(e.target.value)}
           />
-          <FolderSearch />
+
+          {showSelectedFolder}
+          <FolderSearch 
+            selectedFolder={selectedFolder}
+            handleSelectFolder={handleSelectFolder}
+            
+          />
         {showAssigned}
           <EmSearch 
             assigned={assigned}

@@ -1,1 +1,1 @@
-select name from folders;
+select * from folders;

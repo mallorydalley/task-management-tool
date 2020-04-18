@@ -1,99 +1,102 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+// import './EmSearch.css'
 
-function FolderSearch(props){
-    const [chooseFolder, setChooseFolder] = useState(true)
-    const [searchTerm, setSearchTerm] = useState('')
-    const [folderResults, setFolderResults] = useState([])
-    const [selectedFolder, setSelectedFolder] = useState('')
-    const [folders, setFolders] = useState([])
-
-    const people = [
-        "Siri",
-        "Alexa",
-        "Google",
-        "Facebook",
-        "Twitter",
-        "Linkedin",
-        "Sinkedin"
-    ];
-
-    const getFolders = () => {
-        axios
-            .get(`/api/folders`)
-            .then((res) => {
-                // console.log(res.data)
-                // const data = res.data
-                setFolders(res.data);
-
-                // const req = res.data.map((ele, i) => {
-                //     console.log(ele.name)
-                //     setFolders([...folders, {
-                //         id: folders.length,
-                //         value: ele.name
-                //     }])
-                // })
-                // setFolders(req)
+class FolderSearch extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            startSearch: true,
+            searchTerm: '',
+            folders: [],
+            selectedFolder: this.props.selectedFolder
+        }
+    }
+    getFolders = () => {
+        axios.get(`/api/folders`)
+            .then(res => {
+                // setEmployees(res.data)
+                this.setState({ folders: res.data })
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+    }
+    componentDidMount() {
+        this.getFolders()
+    }
+    handleChange = e => {
+        this.setState({ searchTerm: e.target.value })
+        // setSearchTerm(e.target.value)
     }
 
-    useEffect(() => {
-        getFolders()
-    }, [])
+    handleToggle = () => {
+        this.setState({ startSearch: !this.state.startSearch })
+        // setStartSearch(!startSearch)
+    }
 
-    useEffect(() => {
-        const results = folders.filter((ele, i) => {
-            console.log(ele.name)
-                ele.name.toLowerCase().includes(searchTerm)
+
+    render() {
+        const { searchTerm, startSearch, folders, selectedFolder } = this.state
+
+        const filteredSearch = folders.filter((folder, i) => {
+
+            if (folder.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                return folder.name
+            } else {
+                return null
+            }
         })
-        setFolderResults(results)
-    }, [searchTerm])
 
-    // useEffect(() => {
-    //     const results = folders.filter(folder => {
-    //         console.log(folder)
-    //         folder.map((ele, i) => {
-    //             ele[i].name.toLowerCase().includes(searchTerm)
-    //         })
-    //     //    folder.name.toLowerCase().includes(searchTerm)})
-    //     setFolderResults(results) 
-    // }, [searchTerm])
+        // const showselectedFolder = selectedFolder.map((person, i) => (
+        //     <div key={person.employee_id} className='search-result'>
+        //         <img className='em-search-image' src={person.profile_pic} />
+        //         <span className='name-result'>{person.first_name} {person.last_name} </span>
+        //     </div>
+        // ))
 
-    const folderSearch = () => {
-        setChooseFolder(!chooseFolder)
+        // console.log(employees)
+        // console.log(filteredSearch)
+        console.log(selectedFolder)
+        console.log(this.props)
+        return (
+            <div>
+                {/* {showselectedFolder} */}
+                {startSearch
+                    ? (
+                        <span onClick={this.handleToggle}>Select Folder</span>
+                    ) : (
+                        <div>
+                            <input
+                                type='text'
+                                placeholder='Search'
+                                value={searchTerm}
+                                onChange={this.handleChange}
+                            />
+                            {/* <button onClick={this.handleAssign}>Assign</button> */}
+                            <button onClick={this.handleToggle}>Cancel</button>
+
+                            {/* {employees} */}
+                            {/* {showEmployees} */}
+                            <ul>
+                                {filteredSearch.map((folder, i) => {
+                                    // console.log(folder)
+                                    // let {first_name} = folder
+                                    return <li key={i}>
+                                        <div className='search-result' onClick={() => { this.props.handleSelectFolder(folder) }}>
+                                            
+                                            <span className='name-result'>{folder.name} </span>
+                                        </div>
+                                    </li>
+
+                                })}
+                            </ul>
+
+                            {/* onclick adds to array that maps and displays who is selectedFolder */}
+                        </div>
+                    )}
+
+            </div>
+        )
     }
-
-    const handleFolder = e => {
-        setSearchTerm(e.target.value)
-    }
-
-    // console.log(folderResults)
-    // console.log(folders)
-    return (
-        <div>
-        {chooseFolder
-                ?(
-              <span onClick = { folderSearch } > Search Folder</span>
-            ) : (
-        <div>
-            <input
-                placeholder='Search folders'
-                value={searchTerm}
-                onChange={handleFolder}
-            />
-            <button onClick={folderSearch}>Add</button>
-            <ul>
-                {folderResults.map((item, i) => (
-                    <li key={i} onClick={setSelectedFolder(item)}>{item}</li>
-                ))}
-            </ul>
-            {selectedFolder}
-        </div>
-    )
-}
-        </div>
-    )
 }
 
 export default FolderSearch;

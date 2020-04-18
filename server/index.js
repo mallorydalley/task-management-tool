@@ -40,7 +40,7 @@ app.get(`/api/employees`, employeeCtrl.getEmployees)
 app.get(`/api/employee/:employee_id`, employeeCtrl.getOneEmployee)
 
 //tasks endpoints
-app.get(`/api/all-tasks`, taskCtrl.getAllTasks)
+app.get(`/api/all-tasks/:folder_id`, taskCtrl.getAllTasks)
 app.get(`/api/task/:task_id`, taskCtrl.getOneTask)
 app.post(`/api/create-task`, taskCtrl.createTask)
 app.put(`/api/task/:task_id`, taskCtrl.editTask)

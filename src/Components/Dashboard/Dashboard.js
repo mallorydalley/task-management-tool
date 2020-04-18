@@ -8,11 +8,19 @@ function Dashboard(props){
   const [newTasks, setNewTasks] = useState([])
   const [inProgress, setInProgress] = useState([])
   const [complete, setComplete] = useState([])
+  const [folder_id, setFolderId] = useState(1)
 
   const getAllTasks = () => {
-    axios.get(`/api/all-tasks`)
+    axios.get(`/api/all-tasks/${folder_id}`)
     .then(response => {
       // console.log(response.data)
+
+      //response.data.filter(ele => {
+        // if(ele.folder_id === folder_id){
+//Put that other filter inside?
+        // }
+      //})
+
       response.data.filter(ele => {
         if(ele.status === 'Complete'){
           setComplete((complete) => [...complete, ele]);
@@ -28,9 +36,20 @@ function Dashboard(props){
     .catch(err => console.log(err))
 }
 
+  // useEffect(() => {
+  //   getAllTasks()
+  // }, [])
+
+  const clearDash = () => {
+    setComplete((complete) => []);
+    setInProgress((inProgress) => []);
+    setNewTasks((newTasks) => []);
+  }
+
   useEffect(() => {
-    getAllTasks()
-  }, [])
+    clearDash();
+    getAllTasks();
+  }, [folder_id])
   
   let mappedNewTasks = newTasks.map((task, i) => (
     <Tasks key={i} task={task} />
@@ -42,12 +61,17 @@ function Dashboard(props){
     <Tasks key={i} task={task} />
   ))
 
-  // console.log(newTasks)
-  // console.log(inProgress)
-  // console.log(complete)
+  const selectFolder = (id) => {
+    setFolderId(id)
+  }
+
+  console.log(folder_id)
   return (
     <div>
-      <Folders />
+      <Folders 
+        // folder_id = {folder_id}
+        selectFolder={selectFolder}
+      />
       <div className="dash">
         <div className="posts-column">
           <span>New</span>
