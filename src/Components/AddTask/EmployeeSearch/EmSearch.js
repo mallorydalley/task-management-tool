@@ -8,7 +8,6 @@ class EmSearch extends React.Component{
         this.state = {
             startSearch: true,
             searchTerm: '',
-            searchResults: [],
             employees: [],
             assigned: this.props.assigned
         }
@@ -36,7 +35,7 @@ class EmSearch extends React.Component{
     
     
     render(){
-        const {searchResults, searchTerm, startSearch, employees, assigned} = this.state
+        const {searchTerm, startSearch, employees, assigned} = this.state
         // const {assigned} = this.props
         
 
@@ -61,8 +60,8 @@ class EmSearch extends React.Component{
 
         // console.log(employees)
         // console.log(filteredSearch)
-        console.log(assigned)
-        console.log(this.props)
+        // console.log(assigned)
+        // console.log(this.props)
         return(
             <div>
                 {/* {showAssigned} */}
@@ -77,15 +76,13 @@ class EmSearch extends React.Component{
                                 value={searchTerm}
                                 onChange={this.handleChange}
                             />
-                            {/* <button onClick={this.handleAssign}>Assign</button> */}
+                            
                             <button onClick={this.handleToggle}>Cancel</button>
 
-                            {/* {employees} */}
-                            {/* {showEmployees} */}
+                            
                             <ul>
                         {filteredSearch.map((person, i) => {
-                            // console.log(person)
-                            // let {first_name} = person
+                            
                             return <li key={i}>
                                 <div className='search-result' onClick={() => {this.props.handleAssign(person)}}>
                                     <img className = 'em-search-image' src={person.profile_pic} />
@@ -96,7 +93,6 @@ class EmSearch extends React.Component{
                         })}
                     </ul>   
 
-                    {/* onclick adds to array that maps and displays who is assigned */}
                          </div>
                     )}
 

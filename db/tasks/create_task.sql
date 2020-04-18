@@ -11,5 +11,5 @@ insert into tasks (
     ${description},
     ${status},
     ${employee_id},
-    1
+    ${folder_id}
 );

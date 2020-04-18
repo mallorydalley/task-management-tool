@@ -10,7 +10,7 @@ import EmSearch from './EmployeeSearch/EmSearch'
 function AddTask(props) {
   const [title, setTitle] = useState('')
   const [status, setStatus] = useState('')
-  const [folder_id, setFolderId] = useState(1)
+  const [folder_id, setFolderId] = useState(0)
   const [employee_id, setEmpId] = useState(0)
   const [img, setImg] = useState('')
   const [description, setDescription] = useState('')
@@ -18,10 +18,7 @@ function AddTask(props) {
   const [assign, setAssign] = useState(true)
   const [selectedFolder, setSelectedFolder] = useState([])
   const [searchFolder, setSearchFolder] = useState('')
-  // const [folderResults, setFolderResults] = useState([])
-
-  // const [startSearch, setStartSearch] = useState(true)
-  // const [searchTerm, setSearchTerm] = useState('')
+  
   const [assigned, setAssigned] = useState([])
   
   // useEffect(() => {
@@ -33,12 +30,13 @@ function AddTask(props) {
       await axios.get(`/api/task/${props.match.params.task_id}`)
         .then(res => {
           console.log(res.data)
-          const {first_name, last_name, profile_pic} = res.data[0]
+          const {employee_id, first_name, last_name, profile_pic, folder_id, name} = res.data[0]
           setTitle(res.data[0].title)
           setStatus(res.data[0].status)
           setFolderId(res.data[0].folder_id)
           setEmpId(res.data[0].employee_id)
-          setAssigned([...assigned, {first_name, last_name, profile_pic}])
+          setAssigned([...assigned, {employee_id, first_name, last_name, profile_pic}])
+          setSelectedFolder([...selectedFolder, {folder_id, name}])
           setImg(res.data[0].img)
           setDescription(res.data[0].description)
 
@@ -57,6 +55,7 @@ function AddTask(props) {
 
     const createTask = () => {
       const {employee_id} = assigned[0]
+      const {folder_id} = selectedFolder[0]
       axios.post(`/api/create-task`, {title, img, description, status, employee_id, folder_id})
       .then(() => {
         props.history.push('/dashboard')
@@ -64,8 +63,9 @@ function AddTask(props) {
       .catch(err => console.log(err))
     }
 
-    console.log(employee_id)
   const editTask = () => {
+    const { employee_id } = assigned[0]
+    const { folder_id } = selectedFolder[0]
       axios.put(`/api/task/${props.match.params.task_id}`, { title, img, description, status, employee_id, folder_id})
       .then(() => {
         props.history.push('/dashboard')
@@ -95,41 +95,29 @@ function AddTask(props) {
     setDescription('')
   }, [props.match.params.task_id])
 
-  
-  console.log(employee_id)
-
-  // const getOneEmp = async () => {
-  //   await axios.get(`/api/employee/${employee_id}`)
-  //     .then(res => {
-  //       console.log(res.data)
-  //       setAssigned((assigned) => [...assigned, res.data])
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-
-  // useEffect(() => {
-  //   getOneEmp()
-  // }, [])
-
-  // console.log(employee_id)
-
   const handleAssign = (person) => {
     //if statement that doesn't allow you to add people twice
     setAssigned((assigned) => [...assigned, person]);
   }
   const cancelAssign = () => {
-    setAssigned((assigned) => [])
+    setAssigned((assigned) => ([]))
   }
 
   const handleSelectFolder = (folder) => {
-    //if statement that doesn't allow you to add people twice
-    setSelectedFolder((selectFolder) => [...selectFolder, folder]);
+    setSelectedFolder((selectedFolder) => [folder]);
   }
+  const cancelFolder = () => {
+    setSelectedFolder((selectedFolder) => ([]))
+  }
+
+  console.log(selectedFolder)
+  console.log(assigned)
+
 
   const showSelectedFolder = selectedFolder.map((folder, i) => (
     <div key={i} className='search-result'>
       <span className='name-result'>{folder.name}</span>
-      <button onclick={cancelAssign}>X</button>
+      <button onClick={cancelFolder}>X</button>
     </div>
   ))
 
@@ -138,7 +126,7 @@ function AddTask(props) {
     <div key={i} className='search-result'>
       <img className='em-search-image' src={person.profile_pic} />
       <span className='name-result'>{person.first_name} {person.last_name} </span>
-      <button onclick={cancelAssign}>X</button>
+      <button onClick={cancelAssign}>X</button>
     </div>
   )) 
 

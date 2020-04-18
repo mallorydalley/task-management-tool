@@ -40,9 +40,9 @@ class Folders extends React.Component{
       this.getFolders()
     }
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         const mappedFolders = this.state.folders.map((folder, i) => (
-          console.log(folder.folder_id),
+          // console.log(folder.folder_id),
             <div key={i}>
             <span onClick={() => {this.props.selectFolder(folder.folder_id)}}>{folder.name}</span>
             </div>

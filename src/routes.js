@@ -9,7 +9,7 @@ export default (
     <Switch>
         <Route exact path='/' component={Landing} />
         <Route path='/auth' component={Auth} />
-        <Route path='/dashboard' component={Dashboard} />
+        <Route path='/dashboard/' component={Dashboard} />
         <Route path='/add-task' component={AddTask} />
         <Route path='/edit/:task_id' component={AddTask} />
     </Switch>

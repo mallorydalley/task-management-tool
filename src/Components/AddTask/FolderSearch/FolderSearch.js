@@ -45,21 +45,11 @@ class FolderSearch extends React.Component {
                 return null
             }
         })
-
-        // const showselectedFolder = selectedFolder.map((person, i) => (
-        //     <div key={person.employee_id} className='search-result'>
-        //         <img className='em-search-image' src={person.profile_pic} />
-        //         <span className='name-result'>{person.first_name} {person.last_name} </span>
-        //     </div>
-        // ))
-
-        // console.log(employees)
-        // console.log(filteredSearch)
+       
         console.log(selectedFolder)
         console.log(this.props)
         return (
             <div>
-                {/* {showselectedFolder} */}
                 {startSearch
                     ? (
                         <span onClick={this.handleToggle}>Select Folder</span>
@@ -71,11 +61,10 @@ class FolderSearch extends React.Component {
                                 value={searchTerm}
                                 onChange={this.handleChange}
                             />
-                            {/* <button onClick={this.handleAssign}>Assign</button> */}
+                            
                             <button onClick={this.handleToggle}>Cancel</button>
 
-                            {/* {employees} */}
-                            {/* {showEmployees} */}
+                            
                             <ul>
                                 {filteredSearch.map((folder, i) => {
                                     // console.log(folder)
@@ -90,7 +79,6 @@ class FolderSearch extends React.Component {
                                 })}
                             </ul>
 
-                            {/* onclick adds to array that maps and displays who is selectedFolder */}
                         </div>
                     )}
 
