@@ -7,7 +7,9 @@ const express = require('express'),
       authCtrl = require('./controllers/authController'),
       taskCtrl = require('./controllers/taskController'),
       folderCtrl = require('./controllers/folderController'),
-      employeeCtrl = require('./controllers/employeeController')
+      employeeCtrl = require('./controllers/employeeController');
+const socket = require('socket.io')
+const http = require('http')
 
 
 const app = express();
@@ -44,17 +46,22 @@ app.get(`/api/all-tasks/:folder_id`, taskCtrl.getAllTasks)
 app.get(`/api/task/:task_id`, taskCtrl.getOneTask)
 app.post(`/api/create-task`, taskCtrl.createTask)
 app.put(`/api/task/:task_id`, taskCtrl.editTask)
+app.delete(`/api/task/:task_id`, taskCtrl.deleteTask)
 
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)
 
-app.listen(port, () => console.log(`Server running on ${port}`));
+const server = app.listen(port, () => console.log(`Server running on ${port}`));
+
+app.use(express.static('public'))
 
 // socket.io
-// const io = require('socket.io')(3001)
+const io = socket(server)
+
+io.on('connection', (socket) => {
+    socket.emit('chat-message', 'Hello World')
+    console.log('Made socket connection')
+})
 
 
-// io.on('connection', socket => {
-//     console.log('new User')
-//     socket.emit('chat-message', 'Hello World')
-// }) 
+

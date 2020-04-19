@@ -1,30 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './Folders.css'
 import axios from 'axios'
 
 class Folders extends React.Component{
-    // const [folders, setFolders] = useState([])
-
-    // useEffect(() => {
-    //     getFolders()
-    // }, [])
-
-    // getFolders= () => {
-    //     axios.get(`/api/folders`)
-    //     .then(response => {
-    //         setFolders([...folders, {
-    //             id: folders.length,
-    //             value: response.data
-    //         }])
-    //     })
-    // }
     constructor(){
         super()
         this.state = {
             folders: []
         }
     }
-    
 
     getFolders(){
         axios

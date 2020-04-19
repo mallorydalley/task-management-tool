@@ -3,8 +3,8 @@ import './AddTask.css'
 import axios from 'axios'
 import {Link, Route} from 'react-router-dom'
 import FolderSearch from './FolderSearch/FolderSearch'
-import EmployeeSearch from './EmployeeSearch/EmployeeSearch'
 import EmSearch from './EmployeeSearch/EmSearch'
+import Sockets from './Sockets/Sockets'
 
 
 function AddTask(props) {
@@ -20,11 +20,6 @@ function AddTask(props) {
   const [searchFolder, setSearchFolder] = useState('')
   
   const [assigned, setAssigned] = useState([])
-  
-  // useEffect(() => {
-  //   const results = people.filter(person => person.toLowerCase().includes(searchFolder))
-  //   setFolderResults(results)
-  // }, [searchFolder])
 
     const getOneTask = async () => {
       await axios.get(`/api/task/${props.match.params.task_id}`)
@@ -51,8 +46,6 @@ function AddTask(props) {
     getOneTask()
   }, [])
 
-
-
     const createTask = () => {
       const {employee_id} = assigned[0]
       const {folder_id} = selectedFolder[0]
@@ -67,6 +60,14 @@ function AddTask(props) {
     const { employee_id } = assigned[0]
     const { folder_id } = selectedFolder[0]
       axios.put(`/api/task/${props.match.params.task_id}`, { title, img, description, status, employee_id, folder_id})
+      .then(() => {
+        props.history.push('/dashboard')
+      })
+      .catch(err => console.log(err))
+    }
+
+    const deleteTask = () => {
+      axios.delete(`/api/task/${props.match.params.task_id}`)
       .then(() => {
         props.history.push('/dashboard')
       })
@@ -93,6 +94,7 @@ function AddTask(props) {
     setAssigned([])
     setImg('')
     setDescription('')
+    setSelectedFolder([])
   }, [props.match.params.task_id])
 
   const handleAssign = (person) => {
@@ -110,10 +112,6 @@ function AddTask(props) {
     setSelectedFolder((selectedFolder) => ([]))
   }
 
-  console.log(selectedFolder)
-  console.log(assigned)
-
-
   const showSelectedFolder = selectedFolder.map((folder, i) => (
     <div key={i} className='search-result'>
       <span className='name-result'>{folder.name}</span>
@@ -130,8 +128,7 @@ function AddTask(props) {
     </div>
   )) 
 
-  
-  console.log(assigned)
+ 
     return (
       <div className='add-task-page'>
         <div className='add-task-container'>
@@ -153,8 +150,6 @@ function AddTask(props) {
             handleAssign={handleAssign}
           />
           
-
-          {/* <Dropdown options={options}  value={defaultOption} placeholder="Select an option" /> */}
           <select id="status" value={status} onChange={e => setStatus(e.target.value)}>
             <option value='New'>New</option>
             <option value='In Progress'>In Progress</option>
@@ -172,22 +167,8 @@ function AddTask(props) {
             onChange={e => setDescription(e.target.value)}
           />
 
-          {/* socket.io */}
-          {/* <div className='message-container'>
-            <form className='send-container'>
-              <input 
-                type='text'    
-                id='message-input' 
-              />
-              <button 
-                type='submit' id='send-button'
-                > Send
-                </button>
-            </form>
-          </div> */}
-
-         
-
+         <div>
+          <button onClick={deleteTask}>Delete</button>
           <Route 
             path='/add-task'
             render={() => (
@@ -201,8 +182,11 @@ function AddTask(props) {
               <button onClick={editTask}>Save</button>
             )}
           />
-          
+          </div>
+
+          <Sockets />
         </div>
+        
       </div>
     );
   

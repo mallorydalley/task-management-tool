@@ -9,15 +9,6 @@ function App(props) {
     <div className="App">
       <Nav />
       {routes}
-      {/* {props.location.pathname === "/" 
-      ? (
-        <>{routes}</>
-      ) : (
-        <>
-          <Nav />
-          {routes}
-        </>
-      )} */}
     </div>
   );
 }

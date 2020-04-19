@@ -11,7 +11,7 @@ function Nav(props) {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('')
   const [showLogin, setShowLogin] = useState(false)
-  console.log(props)
+  // console.log(props)
 
   
 
@@ -91,8 +91,8 @@ function Nav(props) {
             <button onClick={handleLogout}>Logout</button>
           </div>
           <div className="profile-info">
-            <span>{props.first_name}</span>
-            <span>{props.last_name}</span>
+            {/* <span>{props.first_name}</span>
+            <span>{props.last_name}</span> */}
             <img
               className="nav-profile-pic"
               src={props.profile_pic}

@@ -46,8 +46,8 @@ class FolderSearch extends React.Component {
             }
         })
        
-        console.log(selectedFolder)
-        console.log(this.props)
+        // console.log(selectedFolder)
+        // console.log(this.props)
         return (
             <div>
                 {startSearch

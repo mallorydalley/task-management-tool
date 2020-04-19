@@ -42,5 +42,18 @@ module.exports = {
         res.status(500).send('Oops!')
         console.log(err)
       })
+    },
+    deleteTask: (req, res) => {
+      const db = req.app.get('db')
+      const {task_id} = req.params
+
+      db.tasks.delete_task(task_id)
+      .then(result => {
+        res.status(200).send(result)
+      })
+      .catch(err => {
+        res.status(500).send('Oops! Failed to delete')
+        console.log(err)
+      })
     }
 }

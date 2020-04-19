@@ -13,13 +13,6 @@ function Dashboard(props){
   const getAllTasks = () => {
     axios.get(`/api/all-tasks/${folder_id}`)
     .then(response => {
-      // console.log(response.data)
-
-      //response.data.filter(ele => {
-        // if(ele.folder_id === folder_id){
-//Put that other filter inside?
-        // }
-      //})
 
       response.data.filter(ele => {
         if(ele.status === 'Complete'){
@@ -27,7 +20,6 @@ function Dashboard(props){
         } else if (ele.status === 'In Progress'){
           setInProgress((inProgress) => [...inProgress, ele]);
         }else{
-          // console.log(ele)
           setNewTasks((newTasks) => [...newTasks, ele]);
         }
       })
@@ -35,10 +27,6 @@ function Dashboard(props){
     })
     .catch(err => console.log(err))
 }
-
-  // useEffect(() => {
-  //   getAllTasks()
-  // }, [])
 
   const clearDash = () => {
     setComplete((complete) => []);

@@ -7,12 +7,18 @@
     align-items: center;
 }
 
+.profile-info{
+    /* background-color: rgb(222, 222, 222); */
+    display: flex;
+    align-items: center;
+    
+}
+
 .nav-profile-pic{
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    margin-top: 8px;
+    /* margin-left: 8px; */
 }
 
-.profile-info{
-    background-color: rgb(222, 222, 222);
-}

@@ -3,13 +3,14 @@ import {connect} from 'react-redux';
 import {updateEmail} from '../../redux/reducer'
 
 
+
 function Landing(props) {
   
   const [email, setEmail] = useState('');
   console.log(email)
   console.log(props)
   return (
-    <div>
+    <div className='page'>
       <input
         placeholder="Enter your work email"
         value={email}
