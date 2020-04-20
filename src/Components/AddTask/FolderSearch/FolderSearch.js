@@ -33,7 +33,7 @@ class FolderSearch extends React.Component {
         // setStartSearch(!startSearch)
     }
 
-
+    
     render() {
         const { searchTerm, startSearch, folders, selectedFolder } = this.state
 
@@ -81,7 +81,6 @@ class FolderSearch extends React.Component {
 
                         </div>
                     )}
-
             </div>
         )
     }

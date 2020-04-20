@@ -5,6 +5,8 @@ import {updateEmail} from '../../redux/reducer'
 
 
 function Landing(props) {
+
+ 
   
   const [email, setEmail] = useState('');
   console.log(email)

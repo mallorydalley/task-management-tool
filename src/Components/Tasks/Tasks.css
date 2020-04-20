@@ -3,6 +3,8 @@
     min-height: 230px;
     background-color: whitesmoke;
     margin: 5px;
+    text-decoration: none;
+    color:rgb(29, 29, 29);
 }
 
 #task-img{

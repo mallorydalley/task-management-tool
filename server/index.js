@@ -7,9 +7,10 @@ const express = require('express'),
       authCtrl = require('./controllers/authController'),
       taskCtrl = require('./controllers/taskController'),
       folderCtrl = require('./controllers/folderController'),
-      employeeCtrl = require('./controllers/employeeController');
-const socket = require('socket.io')
-const http = require('http')
+      employeeCtrl = require('./controllers/employeeController'),
+      http = require('http'),
+      socket = require('socket.io');
+    //   emailCtrl = require('./controllers/email');
 
 
 const app = express();
@@ -51,17 +52,48 @@ app.delete(`/api/task/:task_id`, taskCtrl.deleteTask)
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)
 
-const server = app.listen(port, () => console.log(`Server running on ${port}`));
+//email endpoints
+// app.post('api/email', emailCtrl)
 
-app.use(express.static('public'))
 
-// socket.io
+let server = app.listen(port, () => console.log(`Server running on ${port}`));
+
+
+
+// const server = http.createServer(app)
 const io = socket(server)
 
 io.on('connection', (socket) => {
-    socket.emit('chat-message', 'Hello World')
-    console.log('Made socket connection')
+    console.log('Made socket connection', socket.id)
+
+    socket.on('SEND_MESSAGE', function(data){
+        io.emit('RECEIVE_MESSAGE', data)
+    })
+
+    // socket.on('chat', (data) => {
+    //     io.sockets.emit('chat', data)
+    // })
+
+    // socket.on("incoming data", data => {
+    //     socket.broadcast.emit("outgoing data", {num:data})
+    // })
+
+    // socket.on("disconnect", () => console.log("Client disconnected"))
+    // socket.emit('chat-message', 'Hello World')
+    // socket.on('new-user', name => {
+    //     users[socket.id] = name
+    //     socket.broadcast.emit('user connected')
+    // })
+    // socket.on('send-chat-message', message => {
+    //     console.log(message)
+    // })
+    // socket.broadcast.emit('chat-message', message)
 })
+
+
+
+
+
 
 
 

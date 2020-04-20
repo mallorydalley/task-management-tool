@@ -5,6 +5,7 @@ import {Link, Route} from 'react-router-dom'
 import FolderSearch from './FolderSearch/FolderSearch'
 import EmSearch from './EmployeeSearch/EmSearch'
 import Sockets from './Sockets/Sockets'
+import Chat from './Chat/Chat'
 
 
 function AddTask(props) {
@@ -138,17 +139,22 @@ function AddTask(props) {
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          {showSelectedFolder}
+          <div>
           <FolderSearch 
             selectedFolder={selectedFolder}
             handleSelectFolder={handleSelectFolder}
-            
+            cancelFolder={cancelFolder}
           />
-        {showAssigned}
+          {showSelectedFolder}
+          </div>
+
+        <div>
           <EmSearch 
             assigned={assigned}
             handleAssign={handleAssign}
           />
+          {showAssigned}
+          </div>
           
           <select id="status" value={status} onChange={e => setStatus(e.target.value)}>
             <option value='New'>New</option>
@@ -183,8 +189,9 @@ function AddTask(props) {
             )}
           />
           </div>
-
-          <Sockets />
+          <br />
+          <Chat />
+          {/* <Sockets /> */}
         </div>
         
       </div>

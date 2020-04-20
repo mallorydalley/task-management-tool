@@ -21,3 +21,10 @@ create table folders (
     folder_id serial primary key,
     name varchar(50)
 );
+
+-- create table comments (
+--     comment_id serial primary key,
+--     comment text,
+--     task_id int references tasks(task_id),
+--     employee_id int references employee(employee_id)
+-- )

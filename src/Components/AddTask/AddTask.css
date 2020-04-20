@@ -6,8 +6,8 @@
 
 .add-task-container{
     background-color: lightskyblue;
-    height: 70vh;
-    width: 80vw;
+    min-height: 80vh;
+    width: 90vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

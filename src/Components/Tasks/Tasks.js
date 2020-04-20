@@ -8,7 +8,7 @@ function Tasks(props){
 // console.log(props.task)
     return (
       
-      <Link to={`/edit/${props.task.task_id}`}>
+      <Link to={`/edit/${props.task.task_id}`} >
         <div className='task-container'>
           <img id='task-img' src={img} alt=''/>
           <span>{title}</span>
