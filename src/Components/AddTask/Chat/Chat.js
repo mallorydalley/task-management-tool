@@ -17,7 +17,9 @@ class Chat extends React.Component {
         this.sendMessage = ev => {
             ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                author: `${this.props.first_name} ${this.props.last_name}`,
+                first_name: `${this.props.first_name}`,
+                last_name: `${this.props.last_name}`,
+                profile_pic: `${this.props.profile_pic}`,
                 comment:this.state.message,
                 task_id: this.props.task_id,
                 employee_id: this.props.employee_id
@@ -31,10 +33,12 @@ class Chat extends React.Component {
 
         const addMessage = data => {
             console.log(data);
+            this.setState({ taskComments: [...this.state.taskComments, data] })
             const {comment, task_id, employee_id} = data
             axios.post(`/api/comment`, { comment, task_id, employee_id})
             .then(() => {
-                this.setState({ taskComments: [...this.state.taskComments, data] })
+                console.log(data)
+                
                 console.log(this.state.taskComments)
             })
             .catch(err => console.log(err))

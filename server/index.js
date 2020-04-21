@@ -9,9 +9,9 @@ const express = require('express'),
       folderCtrl = require('./controllers/folderController'),
       employeeCtrl = require('./controllers/employeeController'),
       commentCtrl = require('./controllers/commentController')
+      emailCtrl = require('./controllers/emailController'),
       http = require('http'),
       socket = require('socket.io');
-    //   emailCtrl = require('./controllers/email');
 
 
 const app = express();
@@ -58,7 +58,7 @@ app.get(`/api/comments/:task_id`, commentCtrl.getComments)
 app.post(`/api/comment`, commentCtrl.createComment)
 
 //email endpoints
-// app.post('api/email', emailCtrl)
+app.post('/api/email', emailCtrl.email)
 
 
 let server = app.listen(port, () => console.log(`Server running on ${port}`));
