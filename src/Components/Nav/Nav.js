@@ -18,8 +18,8 @@ function Nav(props) {
   const handleLogin = () => {
     axios.post(`/auth/login`, { email, password }).then((res) => {
       console.log(res.data)
-      const { first_name, last_name, profile_pic } = res.data
-      props.getEmployee(first_name, last_name, profile_pic )
+      const { employee_id, first_name, last_name, profile_pic } = res.data
+      props.getEmployee(employee_id, first_name, last_name, profile_pic )
       props.history.push("/dashboard");
     });
   };

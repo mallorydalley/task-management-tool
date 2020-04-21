@@ -8,6 +8,7 @@ const express = require('express'),
       taskCtrl = require('./controllers/taskController'),
       folderCtrl = require('./controllers/folderController'),
       employeeCtrl = require('./controllers/employeeController'),
+      commentCtrl = require('./controllers/commentController')
       http = require('http'),
       socket = require('socket.io');
     //   emailCtrl = require('./controllers/email');
@@ -51,6 +52,10 @@ app.delete(`/api/task/:task_id`, taskCtrl.deleteTask)
 
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)
+
+//comments endpoints
+app.get(`/api/comments/:task_id`, commentCtrl.getComments)
+app.post(`/api/comment`, commentCtrl.createComment)
 
 //email endpoints
 // app.post('api/email', emailCtrl)

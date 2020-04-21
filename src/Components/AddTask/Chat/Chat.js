@@ -1,5 +1,8 @@
 import React from "react";
+import './Chat.css'
 import io from 'socket.io-client'
+import {connect} from 'react-redux'
+import axios from 'axios'
 
 class Chat extends React.Component {
     constructor(props){
@@ -7,15 +10,17 @@ class Chat extends React.Component {
         this.state = {
             username: '',
             message: '',
-            messages: []
+            taskComments: this.props.taskComments
         }
         this.socket = io('localhost:4600')
 
         this.sendMessage = ev => {
             ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
-                message:this.state.message
+                author: `${this.props.first_name} ${this.props.last_name}`,
+                comment:this.state.message,
+                task_id: this.props.task_id,
+                employee_id: this.props.employee_id
             })
             this.setState({message: ''});
         }
@@ -26,14 +31,44 @@ class Chat extends React.Component {
 
         const addMessage = data => {
             console.log(data);
-            this.setState({messages:[...this.state.messages, data]})
-            console.log(this.state.messages)
+            const {comment, task_id, employee_id} = data
+            axios.post(`/api/comment`, { comment, task_id, employee_id})
+            .then(() => {
+                this.setState({ taskComments: [...this.state.taskComments, data] })
+                console.log(this.state.taskComments)
+            })
+            .catch(err => console.log(err))
+            // this.setState({comments:[...this.state.comments, data]})
+            // console.log(this.state.comments)
         }
     }
-    handleInput = () => {
-        
+
+    componentDidMount() {
+        this.getComments()
     }
+
+    getComments = () => {
+        axios.get(`/api/comments/${this.props.task_id}`)
+        .then(res => {
+            this.setState({taskComments: res.data})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    handleInput = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render() {
+        
+        // console.log(this.props.comments)
+        const {taskComments} = this.state
+        console.log(taskComments)
+        console.log(this.props)
         return (
             <div className="container">
                 <div className="row">
@@ -43,17 +78,35 @@ class Chat extends React.Component {
                                 <div className="card-title">Comments</div>
                                 <hr />
                                 <div className="messages">
-                                {this.state.messages.map(message => {
+                                {taskComments.map((message, i) => {
+                                    console.log(message)
                                     return (
-                                        <div>{message.author}: {message.message}</div>
+                                        <div>
+                                            <img className='comment-pic' src={message.profile_pic}/> 
+                                    <span>{`${message.first_name} ${message.last_name}: `}</span>
+                                            {/* {message.author}:  */}
+                                            {message.comment}
+                                        </div>
                                     )
                                 })}
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <input type="text" placeholder="Username" className="form-control" />
+                                <input 
+                                    className="form-control"
+                                    type="text" 
+                                    placeholder="Username" 
+                                    name='username'
+                                    onChange={e => this.handleInput(e)}
+                                     />
                                 <br />
-                                <input type="text" placeholder="Message" className="form-control" />
+                                <input 
+                                    className="form-control"
+                                    type="text" 
+                                    placeholder="Message" 
+                                    name='message'
+                                    onChange={e => this.handleInput(e)}
+                                     />
                                 <br />
                                 <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
                             </div>
@@ -65,4 +118,9 @@ class Chat extends React.Component {
     }
 }
 
-export default Chat;
+const mapStateToProps = reduxState => {
+    const {employee_id, first_name, last_name, profile_pic} = reduxState
+    return {employee_id, first_name, last_name, profile_pic}
+}
+
+export default connect(mapStateToProps)(Chat);

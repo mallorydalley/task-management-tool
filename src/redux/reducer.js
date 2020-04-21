@@ -1,5 +1,6 @@
 const initialState = {
     email: '',
+    employee_id: 0,
     first_name: '',
     last_name: '',
     profile_pic: ''
@@ -15,10 +16,10 @@ export function updateEmail(email){
     }
 }
 
-export function getEmployee(first_name, last_name, profile_pic){
+export function getEmployee(employee_id, first_name, last_name, profile_pic){
     return {
       type: GET_EMPLOYEE,
-      payload: {first_name, last_name, profile_pic}
+      payload: {employee_id, first_name, last_name, profile_pic}
     };
 }
 

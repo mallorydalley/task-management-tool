@@ -2,16 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 
 function EmployeeSearch(props){
-
-    const people = [
-        "Siri",
-        "Alexa",
-        "Google",
-        "Facebook",
-        "Twitter",
-        "Linkedin",
-        "Sinkedin"
-    ];
     const [startSearch, setStartSearch] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResults, setSearchResults] = useState([])

@@ -19,8 +19,8 @@ function AddTask(props) {
   const [assign, setAssign] = useState(true)
   const [selectedFolder, setSelectedFolder] = useState([])
   const [searchFolder, setSearchFolder] = useState('')
-  
   const [assigned, setAssigned] = useState([])
+  const [taskComments, setTaskComments] = useState([])
 
     const getOneTask = async () => {
       await axios.get(`/api/task/${props.match.params.task_id}`)
@@ -34,9 +34,7 @@ function AddTask(props) {
           setAssigned([...assigned, {employee_id, first_name, last_name, profile_pic}])
           setSelectedFolder([...selectedFolder, {folder_id, name}])
           setImg(res.data[0].img)
-          setDescription(res.data[0].description)
-
-          
+          setDescription(res.data[0].description) 
         })
         .catch(err => {
           console.log(err)
@@ -99,7 +97,6 @@ function AddTask(props) {
   }, [props.match.params.task_id])
 
   const handleAssign = (person) => {
-    //if statement that doesn't allow you to add people twice
     setAssigned((assigned) => [...assigned, person]);
   }
   const cancelAssign = () => {
@@ -129,6 +126,21 @@ function AddTask(props) {
     </div>
   )) 
 
+  const getComments = async () => {
+    await axios.get(`/api/comments/${props.match.params.task_id}`)
+      .then(res => {
+        console.log(res.data)
+        setTaskComments(...taskComments, res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  useEffect(() => {
+    getComments()
+  }, [])
+// console.log(props)
+console.log(taskComments)
  
     return (
       <div className='add-task-page'>
@@ -190,7 +202,11 @@ function AddTask(props) {
           />
           </div>
           <br />
-          <Chat />
+          <Chat 
+            taskComments={taskComments}
+            getComments={getComments}
+            task_id={props.match.params.task_id}
+          />
           {/* <Sockets /> */}
         </div>
         
