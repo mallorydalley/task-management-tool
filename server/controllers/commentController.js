@@ -8,6 +8,7 @@ module.exports = {
         .catch(err => res.status(500).send(err))
     },
     createComment: (req, res) => {
+        console.log(req.body)
         const {comment, task_id, employee_id} = req.body
         const db = req.app.get('db')
 

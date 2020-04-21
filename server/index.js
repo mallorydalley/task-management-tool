@@ -69,11 +69,29 @@ let server = app.listen(port, () => console.log(`Server running on ${port}`));
 const io = socket(server)
 
 io.on('connection', (socket) => {
-    console.log('Made socket connection', socket.id)
+    // console.log('Made socket connection', socket.id)
+
+    socket.on('JOIN_ROOM', function (data){
+        console.log('joined room', data)
+        
+        const {room_id} = data
+        socket.join(room_id)
+        io.in(room_id).emit('ROOM_JOINED', data)
+    })
+
+    socket.on('JOIN_EXISTING_ROOM', function(data){
+        const {room_id} = data
+        socket.join(room_id)
+        socket.emit('EXISTING_ROOM_JOINED', data)
+    })
 
     socket.on('SEND_MESSAGE', function(data){
+        // const {room_id} = data
         io.emit('RECEIVE_MESSAGE', data)
+       
     })
+
+
 
     // socket.on('chat', (data) => {
     //     io.sockets.emit('chat', data)

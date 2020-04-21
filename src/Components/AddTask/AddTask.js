@@ -4,8 +4,9 @@ import axios from 'axios'
 import {Link, Route} from 'react-router-dom'
 import FolderSearch from './FolderSearch/FolderSearch'
 import EmSearch from './EmployeeSearch/EmSearch'
-import Sockets from './Sockets/Sockets'
+// import Sockets from './Sockets/Sockets'
 import Chat from './Chat/Chat'
+import io from 'socket.io-client'
 
 
 function AddTask(props) {
@@ -22,10 +23,12 @@ function AddTask(props) {
   const [assigned, setAssigned] = useState([])
   const [taskComments, setTaskComments] = useState([])
 
+  const socket = io('localhost:4600')
+
     const getOneTask = async () => {
       await axios.get(`/api/task/${props.match.params.task_id}`)
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           const {employee_id, first_name, last_name, profile_pic, folder_id, name} = res.data[0]
           setTitle(res.data[0].title)
           setStatus(res.data[0].status)
@@ -129,7 +132,7 @@ function AddTask(props) {
   const getComments = async () => {
     await axios.get(`/api/comments/${props.match.params.task_id}`)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         setTaskComments(...taskComments, res.data)
       })
       .catch(err => {
@@ -140,7 +143,19 @@ function AddTask(props) {
     getComments()
   }, [])
 // console.log(props)
-console.log(taskComments)
+// console.log(taskComments)
+
+const [room_id, setRoomId] = useState('')
+const [obj, setObj] = useState({})
+
+// useEffect(() => {
+//   console.log('hit')
+//   socket.on('ROOM_JOINED', (data) => {
+//     console.log(data)
+//     setRoomId(props.match.params.task_id)
+//     setObj(data)
+//   })
+// }, [])
  
     return (
       <div className='add-task-page'>

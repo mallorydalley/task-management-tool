@@ -3,12 +3,20 @@ import './Dashboard.css'
 import axios from 'axios';
 import Tasks from "../Tasks/Tasks";
 import Folders from '../Folders/Folders'
+import io from 'socket.io-client'
 
 function Dashboard(props){
   const [newTasks, setNewTasks] = useState([])
   const [inProgress, setInProgress] = useState([])
   const [complete, setComplete] = useState([])
   const [folder_id, setFolderId] = useState(1)
+
+  const socket = io('localhost:4600')
+
+  const joinRoom = (id) => {
+    socket.emit('JOIN_ROOM', {room_id: id})
+    props.history.push(`/edit/${id}`)
+  }
 
   const getAllTasks = () => {
     axios.get(`/api/all-tasks/${folder_id}`)
@@ -40,13 +48,13 @@ function Dashboard(props){
   }, [folder_id])
   
   let mappedNewTasks = newTasks.map((task, i) => (
-    <Tasks key={i} task={task} />
+    <Tasks key={i} task={task} joinRoom={joinRoom}/>
   ))
   let mappedInProgress = inProgress.map((task, i) => (
-    <Tasks key={i} task={task} />
+    <Tasks key={i} task={task} joinRoom={joinRoom}/>
   ))
   let mappedComplete = complete.map((task, i) => (
-    <Tasks key={i} task={task} />
+    <Tasks key={i} task={task} joinRoom={joinRoom}/>
   ))
 
   const selectFolder = (id) => {
