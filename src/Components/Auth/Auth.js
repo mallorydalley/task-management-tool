@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './Auth.css'
+import './Auth.scss'
 import axios from 'axios';
 import {connect} from 'react-redux'
 import {getEmployee} from '../../redux/reducer'
@@ -26,20 +26,23 @@ function Auth(props) {
     return (
       <div className='auth'>
         <div className="auth-form">
-          <img src={profile_pic} alt="" />
+          <img className='auth-img' src={profile_pic} alt="" />
           <input
+            className='auth-input'
             placeholder="Add your picture"
             value={profile_pic}
             name="profile_pic"
             onChange={(e) => setProfilePic(e.target.value)}
           />
           <input
+            className='auth-input'
             placeholder="First Name"
             value={first_name}
             name="first_name"
             onChange={(e) => setFirstName(e.target.value)}
           />
           <input
+            className='auth-input'
             placeholder="Last Name"
             value={last_name}
             name="last_name"
@@ -47,13 +50,18 @@ function Auth(props) {
           />
           <br />
           <input
+            className='auth-input'
             placeholder="Password"
             value={password}
             name="password"
             type="password"
             onChange={(e) => setPass(e.target.value)}
           />
-          <button onClick={handleRegister}>Done</button>
+          <button 
+            className='auth-button'
+            onClick={handleRegister}
+          >Done
+          </button>
         </div>
       </div>
     );

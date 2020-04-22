@@ -1,0 +1,29 @@
+@import '../../variables';
+
+.task-card{
+    width: 270px;
+    min-height: 80px;
+    background-color: $card-color;
+    margin-top: 15px;
+    color:rgb(29, 29, 29);
+    padding: 15px;
+    text-align: left;
+    box-shadow: $shadow;
+}
+
+#task-img{
+    height: 130px;
+    width: 250px;
+    margin-top: 5px;
+}
+
+.title{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.assigned-thumbnail{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}

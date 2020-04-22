@@ -1,5 +1,5 @@
 import React from 'react';
-import './Tasks.css';
+import './Tasks.scss';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 
@@ -9,9 +9,9 @@ function Tasks(props){
     return (
       
       // <Link to={`/edit/${props.task.task_id}`} >
-      <div className='task-container' onClick={() => { props.joinRoom(props.task.task_id)}}>
+      <div className='task-card' onClick={() => { props.joinRoom(props.task.task_id)}}>
           <img id='task-img' src={img} alt=''/>
-          <span>{title}</span>
+          <span className='title'>{title}</span>
           <p>{description}</p>
           <img className='assigned-thumbnail' src={profile_pic} alt=''/>
         </div>

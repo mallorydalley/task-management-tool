@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
-import './AddTask.css'
+import './AddTask.scss'
 import axios from 'axios'
 import {Link, Route} from 'react-router-dom'
 import FolderSearch from './FolderSearch/FolderSearch'
 import EmSearch from './EmployeeSearch/EmSearch'
-// import Sockets from './Sockets/Sockets'
 import Chat from './Chat/Chat'
 import io from 'socket.io-client'
 

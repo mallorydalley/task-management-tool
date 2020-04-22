@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import './Dashboard.css'
+import './Dashboard.scss'
 import axios from 'axios';
 import Tasks from "../Tasks/Tasks";
 import Folders from '../Folders/Folders'
@@ -64,22 +64,46 @@ function Dashboard(props){
   return (
     <div>
       <Folders 
-        // folder_id = {folder_id}
         selectFolder={selectFolder}
       />
       <div className="dash">
         <div className="posts-column">
-          <span>New</span>
+
+          <div className='title-container'>
+            <span className='column-title'>New</span>
+          </div>
+            <div className='underline'></div>
+
+          <div className='tasks'>
           {mappedNewTasks}
+          </div>
+
         </div>
         <div className="posts-column">
-          <span>In Progress</span>
-          {mappedInProgress}
+
+          <div className='title-container'>
+            <span className='column-title'>In Progress</span>
+          </div>
+          <div className='underline'></div>
+
+          <div className='tasks'>
+            {mappedInProgress}
+          </div>
+
         </div>
         <div className="posts-column">
-          <span>Complete</span>
-          {mappedComplete}
+
+          <div className='title-container'>
+            <span className='column-title'>Complete</span>
+          </div>
+          <div className='underline'></div>
+
+          <div className='tasks'>
+            {mappedComplete}
+          </div>
+
         </div>
+        
       </div>
     </div>
   )         

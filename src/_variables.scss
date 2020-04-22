@@ -1,0 +1,79 @@
+//brand colors
+$primary-color: #2ab9f1;
+$third-color: rgb(23, 133, 244);
+
+//text 
+$primary-text-color: rgb(65, 65, 65);
+$secondary-text-color: white;
+$font-weight: 700;
+$font-size: 16px;
+
+//background colors
+// $background-color: #fefefe;
+$background-color: rgb(253, 253, 253);
+$card-color: rgb(255, 255, 255);
+$shadow: 1px 1.5px 4px rgb(232, 232, 232);
+
+//image
+$border-radius: 50%;
+
+$cursor: pointer;
+
+@mixin flex-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+@mixin rounded-buttons {
+    color: white;
+    border: 3px solid white;
+    background: transparent;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 16px;
+    margin: 9px;
+    cursor: $cursor;
+}
+
+@mixin square-buttons {
+    border: none;
+    background-color: $primary-color;
+    color: $secondary-text-color;
+}
+
+@mixin small-inputs{
+    padding: 5px;
+    font-size: 12px;
+    box-sizing: border-box;
+    border: 0;
+    margin: 5px;
+    background-color: $background-color;
+}
+
+//card-color
+// background-color: #fefefe;
+
+// @mixin flex-container{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+//pointer on hover
+//input box on AddTask and login
+//
+
+
+
+// const backGround = styled.div`
+//     height: 100px;
+//     width: 100px;
+//     padding-left: 35px
+
+//     @media(mid-width: 40px)
+// `;
+
+// style=

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Folders.css'
+import './Folders.scss'
 import axios from 'axios'
 
 class Folders extends React.Component{
@@ -32,8 +32,14 @@ class Folders extends React.Component{
             </div>
         ))
               return (
-                <div className="folder-container">
-                  <div className='folders'>{mappedFolders}</div>
+                <div className="folder-section">
+                  <div className='folder-container'>
+                    <span className='folder-span'>Folders</span>
+                    <div 
+                      className='folders'>
+                      <div className='folder'>{mappedFolders}</div>
+                    </div>
+                  </div>
                 </div>
               );
             }

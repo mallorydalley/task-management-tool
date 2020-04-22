@@ -1,0 +1,48 @@
+@import '../../variables';
+
+.auth{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: $background-color;
+}
+
+.auth-form{
+    background-color: $card-color;
+    height: 450px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    box-shadow: 0px 0px 8px 0px rgba(198, 198, 198, 0.37);
+}
+
+.auth-input{
+    @include small-inputs;
+    border: 1px solid rgb(220, 220, 220);
+    width: 50%;
+}
+
+.auth-img{
+    object-fit: contain;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRF7RrRAhB3b6xIHZmZxgU77Hpst4ZpOj_vjeWjvY8vCjNQk3Yn&usqp=CAU');
+    background-repeat: no-repeat;
+    background-size: 150px ;
+    height: 150px;
+    width: 150px;
+    border-radius: $border-radius;
+    margin-bottom: 15px;
+    
+}
+
+.auth-button{
+    @include square-buttons;
+    font-weight: 800;
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: $cursor;
+}
+

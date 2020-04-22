@@ -1,0 +1,54 @@
+@import '../../variables';
+
+// .header{
+//     height:100px;
+//     background-color: $primary-header-color;
+// }
+
+.land-bar{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+}
+
+.nav-bar{
+    background-color: $primary-color;
+    height: 60px;
+    width: 100vw;
+    // position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.logo{
+    color: $secondary-text-color;
+    font-weight: 800;
+    font-size: 26px;
+}
+
+.profile-info{
+    display: flex;
+    align-items: center;
+    
+}
+
+.nav-profile-pic{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-top: 8px;
+}
+
+.nav-buttons{
+    @include rounded-buttons;
+}
+
+.land-input{
+    @include small-inputs;
+}
+

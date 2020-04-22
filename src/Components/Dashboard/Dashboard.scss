@@ -1,0 +1,39 @@
+@import '../../variables';
+
+.dash{
+    display: flex;
+    justify-content: space-evenly;
+    width: 80vw;
+    background-color: $background-color;
+}
+.posts-column{
+    // background-color: linen;
+    width: 300px;
+    height: 100vh;
+    margin: 5px;
+    overflow:scroll;
+}
+
+.title-container{
+    // background-color: mistyrose;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.column-title{
+    font-weight: $font-weight;
+    color: $primary-text-color;
+    font-size: 26px;
+    margin-top: 15px;
+}
+
+.underline{
+    height: 4px;
+    width: 100%;
+    background-color: $primary-color;
+}
+
+.tasks{
+    margin-top: 20px;
+    // background-color: lightgray;
+}

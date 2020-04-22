@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import './Nav.css'
+import './Nav.scss'
 import {withRouter, Link} from 'react-router-dom'
 import axios from "axios";
 import {connect} from 'react-redux'
@@ -51,40 +51,46 @@ function Nav(props) {
   return (
     <div>
       {props.location.pathname === "/" ? (
-        <div className="nav-bar">
-          <span>Logo</span>
+        <div className="land-bar">
+          <span className='logo'>ScrumTask</span>
           
          { showLogin
          ?(
           <div>
             <input
+              className='land-input'
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
+              className='land-input'
               type="password"
               value={password}
               placeholder="Password"
               onChange={(e) => setPass(e.target.value)}
             />
-            <button onClick={handleLogin}>Send</button>
+            <button 
+              className='nav-buttons'
+              onClick={handleLogin}>Send</button>
           </div>
           ):(
-            <button onClick={toggleLogin}>Login</button>
+            <button 
+                className='nav-buttons'
+              onClick={toggleLogin}>Login</button>
           )
           }
         </div>
       ) : (
         <div className="nav-bar">
           <Link to='/dashboard'>
-            <span>Logo</span>
+              <span className='logo'>ScrumTask</span>
           </Link>
           <div>
             <Link to="/add-task">
-              <button>Add Task</button>
+                <button className='nav-buttons'>+Add Task</button>
             </Link>
-            <button onClick={handleLogout}>Logout</button>
+              <button className='nav-buttons' onClick={handleLogout}>Logout</button>
           </div>
           <div className="profile-info">
             {/* <span>{props.first_name}</span>
