@@ -104,12 +104,14 @@ class Chat extends React.Component {
                                 <div className="messages">
                                     
                                 {taskComments.sort((a, b) => a.comment_id - b.comment_id).map((message, i) => {
-                                    // console.log(message)
+                                    console.log(message)
                                     return (
                                         <div>
-                                            <img className='comment-pic' src={message.profile_pic}/> 
+                                            <img 
+                                                className='comment-pic' 
+                                                src={message.profile_pic}
+                                            /> 
                                     <span>{`${message.first_name} ${message.last_name}: `}</span>
-                                            {/* {message.author}:  */}
                                             {message.comment}
                                         </div>
                                     )
@@ -117,13 +119,6 @@ class Chat extends React.Component {
                                 </div>
                             </div>
                             <div className="card-footer">
-                                {/* <input 
-                                    className="form-control"
-                                    type="text" 
-                                    placeholder="Username" 
-                                    name='username'
-                                    onChange={e => this.handleInput(e)}
-                                     /> */}
                                 <br />
                                 <input 
                                     className="form-control"
@@ -136,7 +131,6 @@ class Chat extends React.Component {
                                 <br />
                                 <button onClick={(ev)  => {
                                     this.sendMessage(ev)
-                                    // this.addMessageDB()
                                     }} className="btn btn-primary form-control">Send</button>
                             </div>
                         </div>

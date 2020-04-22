@@ -61,7 +61,6 @@ function Dashboard(props){
     setFolderId(id)
   }
 
-  // console.log(folder_id)
   return (
     <div>
       <Folders 

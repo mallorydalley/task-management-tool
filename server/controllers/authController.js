@@ -32,8 +32,6 @@ module.exports = {
         return res.status(401).send(`Password is incorrect`)
     }
 
-    
-
     delete employee[0].password;
     req.session.user = employee[0]
     req.session.employee_id = employee[0].employee_id;

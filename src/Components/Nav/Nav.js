@@ -5,15 +5,11 @@ import axios from "axios";
 import {connect} from 'react-redux'
 import {getEmployee} from '../../redux/reducer'
 
-
-
 function Nav(props) {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('')
   const [showLogin, setShowLogin] = useState(false)
-  // console.log(props)
-
-  
+  console.log(props)
 
   const handleLogin = () => {
     axios.post(`/auth/login`, { email, password }).then((res) => {
@@ -36,8 +32,8 @@ function Nav(props) {
     if(props.first_name===''){
       axios.get(`/api/session`)
       .then(res => {
-        const {first_name, last_name, profile_pic} = res.data
-        props.getEmployee(first_name, last_name, profile_pic)
+        const {employee_id, first_name, last_name, profile_pic} = res.data
+        props.getEmployee(employee_id, first_name, last_name, profile_pic)
       })
       .catch(err => console.log(err))
       //.catch(err => alert('Please log in.))
@@ -96,7 +92,7 @@ function Nav(props) {
             <img
               className="nav-profile-pic"
               src={props.profile_pic}
-              alt={props.first_name}
+              alt=''
             />
           </div>
         </div>

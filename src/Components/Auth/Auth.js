@@ -14,7 +14,8 @@ function Auth(props) {
         axios.post(`/auth/register`, {email: props.email, password, first_name, last_name, profile_pic})
         .then(res => {
             console.log(res.data)
-            props.getEmployee(res.data.first_name, res.data.last_name, res.data.profile_pic)
+          const { employee_id, first_name, last_name, profile_pic } = res.data
+          props.getEmployee(employee_id, first_name, last_name, profile_pic)
             props.history.push('/dashboard')
         })
         .catch(err => console.log(err))
