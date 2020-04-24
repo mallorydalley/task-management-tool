@@ -96,6 +96,7 @@ function AddTask(props) {
     setImg('')
     setDescription('')
     setSelectedFolder([])
+    setTaskComments([])
   }, [props.match.params.task_id])
 
   const handleAssign = (person) => {
@@ -115,7 +116,7 @@ function AddTask(props) {
   const showSelectedFolder = selectedFolder.map((folder, i) => (
     <div key={i} className='search-result'>
       <span className='name-result'>{folder.name}</span>
-      <button onClick={cancelFolder}>X</button>
+      <button className='remove' onClick={cancelFolder}>X</button>
     </div>
   ))
 
@@ -124,7 +125,7 @@ function AddTask(props) {
     <div key={i} className='search-result'>
       <img className='em-search-image' src={person.profile_pic} />
       <span className='name-result'>{person.first_name} {person.last_name} </span>
-      <button onClick={cancelAssign}>X</button>
+      <button className='remove'onClick={cancelAssign}>X </button>
     </div>
   )) 
 
@@ -141,89 +142,97 @@ function AddTask(props) {
   useEffect(() => {
     getComments()
   }, [])
-// console.log(props)
-// console.log(taskComments)
 
 const [room_id, setRoomId] = useState('')
 const [obj, setObj] = useState({})
 
-// useEffect(() => {
-//   console.log('hit')
-//   socket.on('ROOM_JOINED', (data) => {
-//     console.log(data)
-//     setRoomId(props.match.params.task_id)
-//     setObj(data)
-//   })
-// }, [])
  
     return (
-      <div className='add-task-page'>
-        <div className='add-task-container'>
+      <div className="add-task-page">
+        <div className="add-task-container">
           <input
+            className="title-input"
             value={title}
             placeholder="Title..."
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          <div>
-          <FolderSearch 
-            selectedFolder={selectedFolder}
-            handleSelectFolder={handleSelectFolder}
-            cancelFolder={cancelFolder}
-          />
-          {showSelectedFolder}
-          </div>
+          {/* <div className="select-folder">
+            <div>
+              <FolderSearch
+                selectedFolder={selectedFolder}
+                handleSelectFolder={handleSelectFolder}
+                cancelFolder={cancelFolder}
+              />
+              {showSelectedFolder}
+            </div>
+          </div> */}
 
-        <div>
-          <EmSearch 
-            assigned={assigned}
-            handleAssign={handleAssign}
-          />
-          {showAssigned}
-          </div>
-          
-          <select id="status" value={status} onChange={e => setStatus(e.target.value)}>
-            <option value='New'>New</option>
-            <option value='In Progress'>In Progress</option>
-            <option value='Complete'>Complete</option>
+          <select
+            id="status"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="New">New</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Complete">Complete</option>
           </select>
 
+          <div className='selection-field'>
+            <div className="assign-folder-container">
+              <div className="assign-and-folder">
+                <FolderSearch
+                  selectedFolder={selectedFolder}
+                  handleSelectFolder={handleSelectFolder}
+                  cancelFolder={cancelFolder}
+                />
+                {showSelectedFolder}
+              </div>
+            </div>
+
+            <div className='line-spacing'></div>
+
+            <div className="assign-folder-container">
+              <div className="assign-and-folder">
+                <EmSearch assigned={assigned} handleAssign={handleAssign} />
+                {showAssigned}
+              </div>
+            </div>
+
+          </div>
+
           <input
+            className="img-input"
             value={img}
             placeholder="Attach image"
             onChange={(e) => setImg(e.target.value)}
           />
-          <input 
+          <textarea
+            className="desc-input"
             value={description}
-            placeholder='Description'
-            onChange={e => setDescription(e.target.value)}
+            placeholder="Description..."
+            onChange={(e) => setDescription(e.target.value)}
           />
 
-         <div>
-          <button onClick={deleteTask}>Delete</button>
-          <Route 
-            path='/add-task'
-            render={() => (
-              <button onClick={createTask}>Add Task</button>
-            )}
-          />
+          <div>
+            <button onClick={deleteTask}>Delete</button>
+            <Route
+              path="/add-task"
+              render={() => <button onClick={createTask}>Add Task</button>}
+            />
 
-          <Route
-            path='/edit/:task_id'
-            render={() => (
-              <button onClick={editTask}>Save</button>
-            )}
-          />
+            <Route
+              path="/edit/:task_id"
+              render={() => <button onClick={editTask}>Save</button>}
+            />
           </div>
           <br />
-          <Chat 
+          <Chat
             taskComments={taskComments}
             getComments={getComments}
             task_id={props.match.params.task_id}
           />
-          {/* <Sockets /> */}
         </div>
-        
       </div>
     );
   

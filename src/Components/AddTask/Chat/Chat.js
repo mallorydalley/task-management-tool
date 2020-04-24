@@ -1,5 +1,5 @@
 import React from "react";
-import './Chat.css'
+import './Chat.scss'
 import io from 'socket.io-client'
 import {connect} from 'react-redux'
 import axios from 'axios'
@@ -71,6 +71,12 @@ class Chat extends React.Component {
         // })
     }
 
+componentDidUpdate(prevProps){
+    if(prevProps.match.params.task_id !== this.props.match.params.task_id){
+        this.setState({taskComments: []})
+    }
+}
+
     getComments = () => {
         axios.get(`/api/comments/${this.props.match.params.task_id}`)
         .then(res => {
@@ -94,48 +100,52 @@ class Chat extends React.Component {
         // console.log(taskComments)
         // console.log(this.props)
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className="card-title">Comments</div>
-                                <hr />
-                                <div className="messages">
+            <div className="chat-container">
+                <div className="card">
+                    <div className="card-body">
+                        <div className="card-title">Comments</div>
+                        <hr />
+                        <div className="messages">
+                            
+                        {taskComments.sort((a, b) => a.comment_id - b.comment_id).map((message, i) => {
+                            console.log(message)
+                            return (
+                                <div className='commenter'>
                                     
-                                {taskComments.sort((a, b) => a.comment_id - b.comment_id).map((message, i) => {
-                                    console.log(message)
-                                    return (
-                                        <div>
-                                            <img 
-                                                className='comment-pic' 
-                                                src={message.profile_pic}
-                                            /> 
-                                    <span>{`${message.first_name} ${message.last_name}: `}</span>
-                                            {message.comment}
+                                    <img 
+                                        className='commenter-pic' 
+                                        src={message.profile_pic}
+                                    /> 
+                                    
+                                    <div className='name-message'>
+                            <span className='name'>{`${message.first_name} ${message.last_name}: `}</span>
+                                <div className='message'>
+                                    {message.comment}
                                         </div>
-                                    )
-                                })}
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="card-footer">
-                                <br />
-                                <input 
-                                    className="form-control"
-                                    type="text" 
-                                    placeholder="Message" 
-                                    value={this.state.message}
-                                    name='message'
-                                    onChange={e => this.handleInput(e)}
-                                     />
-                                <br />
-                                <button onClick={(ev)  => {
-                                    this.sendMessage(ev)
-                                    }} className="btn btn-primary form-control">Send</button>
-                            </div>
+                            )
+                        })}
                         </div>
                     </div>
+                    <div className="card-footer">
+                        <br />
+                        <input 
+                            className="comment-input"
+                            type="text" 
+                            placeholder="Write a comment" 
+                            value={this.state.message}
+                            name='message'
+                            onChange={e => this.handleInput(e)}
+                                />
+                        <br />
+                        <button onClick={(ev)  => {
+                            this.sendMessage(ev)
+                            }} className="comment-button">Send</button>
+                    </div>
                 </div>
+                    
+              
             </div>
         );
     }

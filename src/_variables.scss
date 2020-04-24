@@ -10,12 +10,15 @@ $font-size: 16px;
 
 //background colors
 // $background-color: #fefefe;
-$background-color: rgb(253, 253, 253);
+$background-color: rgb(252, 252, 252);
 $card-color: rgb(255, 255, 255);
 $shadow: 1px 1.5px 4px rgb(232, 232, 232);
 
 //image
 $border-radius: 50%;
+
+//inputs
+$border: 1px solid rgb(237, 237, 237);
 
 $cursor: pointer;
 
@@ -29,19 +32,21 @@ $cursor: pointer;
 
 @mixin rounded-buttons {
     color: white;
-    border: 3px solid white;
+    border: 2.2px solid white;
     background: transparent;
     border-radius: 12px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 16px;
-    margin: 9px;
+    margin: 0 9px;
     cursor: $cursor;
+    outline: none;
 }
 
 @mixin square-buttons {
     border: none;
     background-color: $primary-color;
     color: $secondary-text-color;
+    outline: none;
 }
 
 @mixin small-inputs{
@@ -51,29 +56,39 @@ $cursor: pointer;
     border: 0;
     margin: 5px;
     background-color: $background-color;
+    outline:none;
 }
 
-//card-color
-// background-color: #fefefe;
+@mixin big-inputs{
+    padding: 14px;
+    font-size: 26px;
+    // font-style: italic;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+}
 
-// @mixin flex-container{
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
+@mixin add-task-selections{
+    background-color: #f7f7f7;
+    box-shadow: inset 2px 0px 20px -10px rgb(228, 228, 228);
+    padding: 7px;
+    border-radius: 3px;
+    margin: 10px 0;
+    cursor: $cursor;
+}
 
-//pointer on hover
-//input box on AddTask and login
-//
+@mixin search-bar-and-button{
+    height: 25px;
+    display: flex;
+}
 
+ @mixin search-input{
+    width: 80%;
+    outline: none;
+}
 
-
-// const backGround = styled.div`
-//     height: 100px;
-//     width: 100px;
-//     padding-left: 35px
-
-//     @media(mid-width: 40px)
-// `;
-
-// style=
+ @mixin close-button{
+    width: 20%;
+    background-color: #f7f7f7;
+    outline: none;
+}

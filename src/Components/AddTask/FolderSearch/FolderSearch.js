@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-// import './EmSearch.css'
+// import './FolderSearch.scss'
 
 class FolderSearch extends React.Component {
     constructor(props) {
@@ -49,40 +49,50 @@ class FolderSearch extends React.Component {
         // console.log(selectedFolder)
         // console.log(this.props)
         return (
-            <div>
-                {startSearch
-                    ? (
-                        <span onClick={this.handleToggle}>Select Folder</span>
-                    ) : (
-                        <div>
-                            <input
-                                type='text'
-                                placeholder='Search'
-                                value={searchTerm}
-                                onChange={this.handleChange}
-                            />
-                            
-                            <button onClick={this.handleToggle}>Cancel</button>
+          <div>
+            {startSearch ? (
+              <span
+                className="toggle"
+                onClick={this.handleToggle}
+              >
+                Select Folder
+              </span>
+            ) : (
+              <div className="search-input-and-results">
+                  <div className='search-bar-and-button'>
+                <input
+                  className="search-input"
+                  type="text"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={this.handleChange}
+                />
 
-                            
-                            <ul>
-                                {filteredSearch.map((folder, i) => {
-                                    // console.log(folder)
-                                    // let {first_name} = folder
-                                    return <li key={i}>
-                                        <div className='search-result' onClick={() => { this.props.handleSelectFolder(folder) }}>
-                                            
-                                            <span className='name-result'>{folder.name} </span>
-                                        </div>
-                                    </li>
+                <button className="close-button" onClick={this.handleToggle}>
+                  Close
+                </button>
+                </div>
 
-                                })}
-                            </ul>
-
+                <ul>
+                  {filteredSearch.map((folder, i) => {
+                    return (
+                      <li key={i}>
+                        <div
+                          className="search-result"
+                          onClick={() => {
+                            this.props.handleSelectFolder(folder);
+                          }}
+                        >
+                          <span className="name-result">{folder.name} </span>
                         </div>
-                    )}
-            </div>
-        )
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          </div>
+        );
     }
 }
 

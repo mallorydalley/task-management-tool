@@ -9,7 +9,7 @@ function Nav(props) {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('')
   const [showLogin, setShowLogin] = useState(false)
-  console.log(props)
+  const [showLogout, setShowLogout] = useState(false)
 
   const handleLogin = () => {
     axios.post(`/auth/login`, { email, password }).then((res) => {
@@ -48,64 +48,87 @@ function Nav(props) {
     setShowLogin(!showLogin)
   }
 
+  const toggleLogout = () => {
+    setShowLogout(!showLogout)
+  }
+const pathname = props.location.pathname
   return (
     <div>
       {props.location.pathname === "/" ? (
         <div className="land-bar">
-          <span className='logo'>ScrumTask</span>
-          
-         { showLogin
-         ?(
-          <div>
-            <input
-              className='land-input'
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              className='land-input'
-              type="password"
-              value={password}
-              placeholder="Password"
-              onChange={(e) => setPass(e.target.value)}
-            />
-            <button 
-              className='nav-buttons'
-              onClick={handleLogin}>Send</button>
+          <div className="land-contents">
+            <span className="logo">TaskBox</span>
+
+            {showLogin ? (
+              <div>
+                <input
+                  className="land-input"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  className="land-input"
+                  type="password"
+                  value={password}
+                  placeholder="Password"
+                  onChange={(e) => setPass(e.target.value)}
+                />
+                <button className="nav-buttons" onClick={handleLogin}>
+                  Send
+                </button>
+              </div>
+            ) : (
+              <button className="nav-buttons" onClick={toggleLogin}>
+                Login
+              </button>
+            )}
           </div>
-          ):(
-            <button 
-                className='nav-buttons'
-              onClick={toggleLogin}>Login</button>
-          )
-          }
         </div>
       ) : (
         <div className="nav-bar">
-          <Link to='/dashboard'>
-              <span className='logo'>ScrumTask</span>
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
+            <span className="logo">TaskBox</span>
           </Link>
-          <div>
+
+          <div className="nav-right">
             <Link to="/add-task">
-                <button className='nav-buttons'>+Add Task</button>
+              <button className="nav-buttons">+Add Task</button>
             </Link>
-              <button className='nav-buttons' onClick={handleLogout}>Logout</button>
-          </div>
-          <div className="profile-info">
+            <button className="nav-buttons" onClick={handleLogout}>
+              Logout
+            </button>
             {/* <span>{props.first_name}</span>
             <span>{props.last_name}</span> */}
-            <img
-              className="nav-profile-pic"
-              src={props.profile_pic}
-              alt=''
-            />
+            {showLogout ? (
+              <div onClick={toggleLogout} className="show-logout">
+                <img
+                  className="nav-profile-pic"
+                  src={props.profile_pic}
+                  alt=""
+                />
+                <div className="logout-dropdown">Logout
+                  <ul>
+                    <li onClick={handleLogout}>Logout</li>
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <div onClick={toggleLogout} className="show-logout">
+                <img
+                  className="nav-profile-pic"
+                  src={props.profile_pic}
+                  alt=""
+                />
+              </div>
+            )}
           </div>
         </div>
       )}
     </div>
   );
 }
+
 
 const mapStateToProps = reduxState => {
   const {first_name, last_name, profile_pic} = reduxState
