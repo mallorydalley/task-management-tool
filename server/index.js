@@ -52,6 +52,7 @@ app.delete(`/api/task/:task_id`, taskCtrl.deleteTask)
 
 //folders endpoints
 app.get(`/api/folders`, folderCtrl.getFolders)
+app.post(`/api/create-folder`, folderCtrl.createFolder)
 
 //comments endpoints
 app.get(`/api/comments/:task_id`, commentCtrl.getComments)
@@ -63,9 +64,7 @@ app.post('/api/email', emailCtrl.email)
 
 let server = app.listen(port, () => console.log(`Server running on ${port}`));
 
-
-
-// const server = http.createServer(app)
+//Sockets
 const io = socket(server)
 
 io.on('connection', (socket) => {
@@ -92,25 +91,6 @@ io.on('connection', (socket) => {
     })
 
 
-
-    // socket.on('chat', (data) => {
-    //     io.sockets.emit('chat', data)
-    // })
-
-    // socket.on("incoming data", data => {
-    //     socket.broadcast.emit("outgoing data", {num:data})
-    // })
-
-    // socket.on("disconnect", () => console.log("Client disconnected"))
-    // socket.emit('chat-message', 'Hello World')
-    // socket.on('new-user', name => {
-    //     users[socket.id] = name
-    //     socket.broadcast.emit('user connected')
-    // })
-    // socket.on('send-chat-message', message => {
-    //     console.log(message)
-    // })
-    // socket.broadcast.emit('chat-message', message)
 })
 
 

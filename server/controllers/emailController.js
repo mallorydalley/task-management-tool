@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer'),
 
 module.exports = {
     email: async (req, res) => {
-        const {email, password} = req.body
+        const {email} = req.body
         try {
             let transporter = nodemailer.createTransport({
                 host: 'smtp.mail.yahoo.com',
@@ -18,21 +18,22 @@ module.exports = {
 
             let info = await transporter.sendMail({
                 from: `Mallory Dalley <${EMAIL}>`,
-                to: 'mallorydalley@yahoo.com',
-                subject: 'NodeMailer Test',
-                text: 'Welcome to ScrumTask! Thanks for signing up',
-                html: `<div>Welcome to ScrumTask! Thanks for signing up</div>
-                       <img src="cid:unique@nodemailer.com"/>`,
-                attachments: [
-                    {
-                        filename: 'license.txt',
-                        path: 'https://raw.github.com/nodemailer/nodemailer/master/LICENSE'
-                    },
-                    {
-                        cid: 'unique@nodemailer.com',
-                        path: 'https://i.kym-cdn.com/photos/images/original/001/516/899/f31.jpg'
-                    }
-                ]
+                to: email,
+                subject: 'Welcome to TaskBox!',
+                text: `Thanks for signing up! Your team is waiting on the other side.`,
+                html: `<div>Thanks for signing up! Your team is waiting on the other side. </div>`
+
+                 //      <img src="cid:unique@nodemailer.com"/>`
+                // attachments: [
+                //     {
+                //         filename: 'license.txt',
+                //         path: 'https://raw.github.com/nodemailer/nodemailer/master/LICENSE'
+                //     },
+                //     {
+                //         cid: 'unique@nodemailer.com',
+                //         path: 'https://i.kym-cdn.com/photos/images/original/001/516/899/f31.jpg'
+                //     }
+                // ]
             }, (err, res) => {
                 if (err) {
                     console.log(err)

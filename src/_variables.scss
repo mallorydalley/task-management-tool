@@ -20,6 +20,9 @@ $border-radius: 50%;
 //inputs
 $border: 1px solid rgb(237, 237, 237);
 
+//buttons
+$blue-hover: #0c73da;
+
 $cursor: pointer;
 
 @mixin flex-box{
@@ -37,16 +40,26 @@ $cursor: pointer;
     border-radius: 12px;
     font-weight: 700;
     font-size: 16px;
-    margin: 0 9px;
+    margin: 0 15px;
     cursor: $cursor;
     outline: none;
 }
 
 @mixin square-buttons {
     border: none;
-    background-color: $primary-color;
+    background-color: $third-color;
     color: $secondary-text-color;
     outline: none;
+    cursor: $cursor;
+    border-radius: 3px;
+    padding: 5px 7px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+@mixin nav-btn-hover-focus{
+    background-color: white;
+    color: $primary-text-color
 }
 
 @mixin small-inputs{
@@ -57,6 +70,11 @@ $cursor: pointer;
     margin: 5px;
     background-color: $background-color;
     outline:none;
+}
+
+@mixin inputs{
+    width: 80%;
+    outline: none;
 }
 
 @mixin big-inputs{
@@ -74,6 +92,7 @@ $cursor: pointer;
     padding: 7px;
     border-radius: 3px;
     margin: 10px 0;
+    margin-right: 8px;
     cursor: $cursor;
 }
 
@@ -82,13 +101,18 @@ $cursor: pointer;
     display: flex;
 }
 
- @mixin search-input{
-    width: 80%;
-    outline: none;
-}
+//  @mixin search-input{
+//     width: 80%;
+//     outline: none;
+// }
 
  @mixin close-button{
     width: 20%;
     background-color: #f7f7f7;
     outline: none;
+}
+
+@mixin underline{
+    height: 3px;
+    width: 100%;
 }

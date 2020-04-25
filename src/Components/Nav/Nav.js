@@ -95,9 +95,9 @@ const pathname = props.location.pathname
             <Link to="/add-task">
               <button className="nav-buttons">+Add Task</button>
             </Link>
-            <button className="nav-buttons" onClick={handleLogout}>
+            {/* <button className="nav-buttons" onClick={handleLogout}>
               Logout
-            </button>
+            </button> */}
             {/* <span>{props.first_name}</span>
             <span>{props.last_name}</span> */}
             {showLogout ? (
@@ -107,9 +107,10 @@ const pathname = props.location.pathname
                   src={props.profile_pic}
                   alt=""
                 />
-                <div className="logout-dropdown">Logout
-                  <ul>
-                    <li onClick={handleLogout}>Logout</li>
+                <div className="logout-dropdown">
+                  {/* <span>Logout</span> */}
+                  <ul className='logout-list'>
+                    <li className='dropdown-items' onClick={handleLogout}>Logout</li>
                   </ul>
                 </div>
               </div>

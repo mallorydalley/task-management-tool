@@ -39,6 +39,7 @@
     box-sizing: border-box;
     border: 0;
     margin: 70px 0;
+    outline: none;
     // box-shadow: 0px 0px 2px rgb(126, 126, 126);
 }
 
@@ -50,33 +51,13 @@
     font-size: 24px;
     border: 0;
     cursor: $cursor;
+    outline:none;
     // box-shadow: 0px 0px 2px rgb(126, 126, 126);
 }
 
-
-
-
-
-
-
-// const mediaQuery = '(min-width: 30rem)'
-
-// const roundedStyle = css`
-//     border-radius: 1rem;
-// `
-
-
-// const Background = styled.img`
-//     height: 100%;
-//     width: 100%;
-//     background-color: pink;
-//     @media ${mediaQuery} {
-//         width: 400px;
-//     }
-// `
-
-// const styles = {
-//     page: {
-//         height: 100vh,
-//     }
-// }
+.get-started-button:hover{
+    background-color: $blue-hover;
+}
+.get-started-button:focus{
+    background-color: $blue-hover;
+}

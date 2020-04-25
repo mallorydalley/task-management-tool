@@ -75,13 +75,13 @@ function AddTask(props) {
       .catch(err => console.log(err))
     }
 
-    const folderSearch = () => {
-      setChooseFolder(!chooseFolder)
-    }
+    // const folderSearch = () => {
+    //   setChooseFolder(!chooseFolder)
+    // }
 
-    const assignEmployee = () => {
-      setAssign(!assign)
-    }
+    // const assignEmployee = () => {
+    //   setAssign(!assign)
+    // }
 
     const handleFolder = e => {
       setSearchFolder(e.target.value)
@@ -125,7 +125,7 @@ function AddTask(props) {
     <div key={i} className='search-result'>
       <img className='em-search-image' src={person.profile_pic} />
       <span className='name-result'>{person.first_name} {person.last_name} </span>
-      <button className='remove'onClick={cancelAssign}>X </button>
+      <button className='remove' onClick={cancelAssign}>X </button>
     </div>
   )) 
 
@@ -157,17 +157,6 @@ const [obj, setObj] = useState({})
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          {/* <div className="select-folder">
-            <div>
-              <FolderSearch
-                selectedFolder={selectedFolder}
-                handleSelectFolder={handleSelectFolder}
-                cancelFolder={cancelFolder}
-              />
-              {showSelectedFolder}
-            </div>
-          </div> */}
-
           <select
             id="status"
             value={status}
@@ -178,7 +167,7 @@ const [obj, setObj] = useState({})
             <option value="Complete">Complete</option>
           </select>
 
-          <div className='selection-field'>
+          <div className="selection-field">
             <div className="assign-folder-container">
               <div className="assign-and-folder">
                 <FolderSearch
@@ -190,7 +179,7 @@ const [obj, setObj] = useState({})
               </div>
             </div>
 
-            <div className='line-spacing'></div>
+            <div className="line-spacing"></div>
 
             <div className="assign-folder-container">
               <div className="assign-and-folder">
@@ -198,7 +187,6 @@ const [obj, setObj] = useState({})
                 {showAssigned}
               </div>
             </div>
-
           </div>
 
           <input
@@ -215,15 +203,25 @@ const [obj, setObj] = useState({})
           />
 
           <div>
-            <button onClick={deleteTask}>Delete</button>
+            <button className="add-task-btns" onClick={deleteTask}>
+              Delete
+            </button>
             <Route
               path="/add-task"
-              render={() => <button onClick={createTask}>Add Task</button>}
+              render={() => (
+                <button className="add-task-btns" onClick={createTask}>
+                  Add Task
+                </button>
+              )}
             />
 
             <Route
               path="/edit/:task_id"
-              render={() => <button onClick={editTask}>Save</button>}
+              render={() => (
+                <button className="add-task-btns" onClick={editTask}>
+                  Save
+                </button>
+              )}
             />
           </div>
           <br />

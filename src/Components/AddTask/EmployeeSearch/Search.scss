@@ -44,15 +44,11 @@ li{
 }
 
 .search-input{
-    width: 80%;
-    outline: none;
+    @include inputs;
 }
 
 .close-button{
-    // border: none;
-    width: 20%;
-    background-color: #f7f7f7;
-    outline: none;
+    @include close-button;
 }
 
 

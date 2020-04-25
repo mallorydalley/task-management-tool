@@ -6,7 +6,9 @@ class Folders extends React.Component{
     constructor(){
         super()
         this.state = {
-            folders: []
+            folders: [],
+            name: '',
+            newFolder: false
         }
     }
 
@@ -23,25 +25,74 @@ class Folders extends React.Component{
     componentDidMount() {
       this.getFolders()
     }
+
+    createFolder = () => {
+      const {name} = this.state
+      axios.post(`/api/create-folder`, {name})
+      .then(res => {
+        this.setState({folders: [...this.state.folders, res.data], name: ''})
+      })
+      .catch(err => console.log(err))
+    }
+
+    toggleNewFolder= ()=> {
+      this.setState({newFolder: !this.state.newFolder})
+    }
+
+    handleChange = e => {
+      this.setState({name: e.target.value})
+    }
+
+    componentDidUpdate(prevProps, prevState){
+      if(prevState.folders !== this.state.folders){
+        console.log(this.state.folders)
+      }
+    }
     render(){
-        // console.log(this.props)
-        const mappedFolders = this.state.folders.map((folder, i) => (
-          // console.log(folder.folder_id),
-            <div key={i}>
-            <span onClick={() => {this.props.selectFolder(folder.folder_id)}}>{folder.name}</span>
+      const {name, folders, newFolder} = this.state
+        console.log(name)
+
+        const mappedFolders = folders.map((folder, i) => (
+          <div key={i} className="mapped-folders">
+            <span
+              onClick={() => {
+                this.props.selectFolder(folder.folder_id);
+              }}
+            >
+              {folder.name}
+            </span>
+          </div>
+        ));
+      return (
+        <div className="folder-section">
+          <div className="folder-container">
+            <div className="folder-plus">
+              <span className="folder-span">Folders</span>
+              <button onClick={this.toggleNewFolder}>+</button>
             </div>
-        ))
-              return (
-                <div className="folder-section">
-                  <div className='folder-container'>
-                    <span className='folder-span'>Folders</span>
-                    <div 
-                      className='folders'>
-                      <div className='folder'>{mappedFolders}</div>
-                    </div>
-                  </div>
-                </div>
-              );
+            {newFolder ? (
+              <div className="input-and-btn">
+                <input
+                  className="search-input"
+                  placeholder="New folder"
+                  value={name}
+                  onChange={this.handleChange}
+                  onSubmit={this.createFolder}
+                />
+               
+                  <button className="save-button" onClick={this.createFolder}>
+                    Save
+                  </button> 
+               
+              </div>
+            ) : null}
+
+            <div className="folders">
+              <div className="folder">{mappedFolders}</div>
+            </div>
+          </div>
+        </div>
+      );
             }
 }
 

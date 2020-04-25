@@ -3,7 +3,8 @@
 .auth{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    padding-top: 40px;
+    height: 100vh;
 }
 
 .auth-form{
@@ -25,7 +26,7 @@
 }
 
 .auth-img{
-    object-fit: contain;
+    object-fit: cover;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRF7RrRAhB3b6xIHZmZxgU77Hpst4ZpOj_vjeWjvY8vCjNQk3Yn&usqp=CAU');
     background-repeat: no-repeat;
     background-size: 150px ;
@@ -38,10 +39,15 @@
 
 .auth-button{
     @include square-buttons;
-    font-weight: 800;
-    padding: 5px;
+    font-weight: 600;
     font-size: 16px;
     margin-top: 15px;
-    cursor: $cursor;
+}
+
+.auth-button:hover{
+    background-color: $blue-hover;
+}
+.auth-button:focus{
+    background-color: $blue-hover;
 }
 

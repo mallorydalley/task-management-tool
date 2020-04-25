@@ -21,19 +21,22 @@
 }
 
 .nav-bar{
+    // background-color: dodgerblue;
     background-color: $primary-color;
     height: 60px;
     // width: 100%;
-    // position: relative;
+    // position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
+    box-shadow: 0px 2px 5px rgb(203, 203, 203);
+    z-index: 3;
 }
 
 .logo{
     color: $secondary-text-color;
-    font-weight: 800;
+    font-weight: 700px;
     font-size: 26px;
     text-decoration: none;
 }
@@ -51,6 +54,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    cursor: $cursor;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRF7RrRAhB3b6xIHZmZxgU77Hpst4ZpOj_vjeWjvY8vCjNQk3Yn&usqp=CAU');
 }
 
@@ -67,17 +71,48 @@
     // margin-top: 8px;
     object-fit: cover;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRF7RrRAhB3b6xIHZmZxgU77Hpst4ZpOj_vjeWjvY8vCjNQk3Yn&usqp=CAU');
-    cursor: $cursor;
-    
+    box-shadow: 1px 1.5px 4px rgb(113, 113, 113)
 }
 
 .logout-dropdown{
-    // margin-top: 60px;
-    background-color: lightgray;
+    position: absolute; 
+    top: 100%; 
+    right: 0; 
+    width: 150px; 
+    // z-index: 2; 
+    border: 1px solid rgba(0, 0, 0, 0.04); 
+    box-shadow: 0 2px 15px 1px rgba(108, 108, 108, 0.14);
+    margin-top: 10px;
+    // opacity: 0.5;
+    // background-color: black;
+}
+
+.logout-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: $primary-text-color;
+}
+
+.dropdown-items{
+    margin-top: 5px;
+    font-weight: 650;
+}
+
+.dropdown-items:hover{
+    color: $third-color;
+    cursor: $cursor;
 }
 
 .nav-buttons{
     @include rounded-buttons;
+}
+
+.nav-buttons:hover{
+    @include nav-btn-hover-focus;
+}
+.nav-buttons:focus{
+    @include nav-btn-hover-focus;
 }
 
 .land-input{

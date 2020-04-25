@@ -7,8 +7,14 @@ import {withRouter} from 'react-router-dom'
 function App(props) {
   return (
     <div className="App">
-      <Nav />
-      {routes}
+      {props.location.pathname === "/auth" ? (
+        <>{routes}</>
+      ) : (
+        <>
+          <Nav />
+          {routes}
+        </>
+      )}
     </div>
   );
 }

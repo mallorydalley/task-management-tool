@@ -84,7 +84,7 @@ function Dashboard(props){
           <div className='title-container'>
             <span className='column-title'>In Progress</span>
           </div>
-          <div className='underline'></div>
+          <div className='underline-orange'></div>
 
           <div className='tasks'>
             {mappedInProgress}
@@ -96,7 +96,7 @@ function Dashboard(props){
           <div className='title-container'>
             <span className='column-title'>Complete</span>
           </div>
-          <div className='underline'></div>
+          <div className='underline-green'></div>
 
           <div className='tasks'>
             {mappedComplete}

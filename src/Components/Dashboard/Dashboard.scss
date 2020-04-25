@@ -28,9 +28,16 @@
 }
 
 .underline{
-    height: 4px;
-    width: 100%;
-    background-color: $primary-color;
+    @include underline;
+    background-color: $third-color;
+}
+.underline-orange{
+    @include underline;
+    background-color: rgb(255, 184, 53);
+}
+.underline-green{
+    @include underline;
+    background-color: rgb(40, 215, 40);
 }
 
 .tasks{

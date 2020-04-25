@@ -117,3 +117,10 @@
     outline: none;
     cursor: $cursor;
 }
+
+.comment-button:hover{
+    background-color: $blue-hover;
+}
+.comment-button:focus{
+    background-color: $blue-hover;
+}
