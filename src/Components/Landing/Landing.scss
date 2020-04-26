@@ -4,35 +4,31 @@
 .page{
     background-image: url('../../assets/land.png');
     height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
+    // width: 100%;
+    @include flex-align-center;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: 50% 0%;
+    // object-fit: cover;
+    // background-size: cover;
+    // position: absolute;
+    // top: 0;
 }
 
 .container{
-    // padding-top: 80px;
     width: 100%;
     height: 50%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
-    // flex-direction: column;
-    // justify-content: center;
-    // background-color: violet;
 }
 
 .heading{
     color: $secondary-text-color;
     font-weight: 800;
     font-size: 46px;
-    // padding: 55px;
-    // margin: 50px 0;
-    // background-color: thistle;
 }
 
 .email-input{
     position: relative;
-    width: 40%;
+    width: 50%;
     padding: 16px;
     font-size: 24px;
     font-style: italic;
@@ -40,7 +36,7 @@
     border: 0;
     margin: 70px 0;
     outline: none;
-    // box-shadow: 0px 0px 2px rgb(126, 126, 126);
+    box-shadow: 0px 0px 8px rgb(126, 126, 126);
 }
 
 .get-started-button{
@@ -52,7 +48,7 @@
     border: 0;
     cursor: $cursor;
     outline:none;
-    // box-shadow: 0px 0px 2px rgb(126, 126, 126);
+    box-shadow: 0px 0px 8px rgb(126, 126, 126);
 }
 
 .get-started-button:hover{
@@ -60,4 +56,64 @@
 }
 .get-started-button:focus{
     background-color: $blue-hover;
+}
+
+@media screen and (max-width: 700px){
+    .email-input{
+        padding: 12px;
+        font-size: 16px;
+        width: 60%;
+    }
+    .get-started-button{
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .heading{
+        margin: 0 20px;
+        // background-color: lightsalmon;
+        display: inline-block;
+        font-size: 38px;
+    }
+    .email-input{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 480px){
+    .heading{
+        margin: 0 20px;
+        // background-color: lightsalmon;
+        display: inline-block;
+        font-size: 32px;
+        font-weight: 800;
+    }
+    .email-input{
+        padding: 10px;
+        font-size: 14px;
+        width: 60%;
+    }
+    .get-started-button{
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 410px){
+    .heading{
+        margin: 0 20px;
+        // background-color: lightsalmon;
+        display: inline-block;
+        font-size: 30px;
+        font-weight: 800;
+    }
+    .email-input{
+        padding: 8px;
+        font-size: 12px;
+        width: 65%;
+    }
+    .get-started-button{
+        padding: 8px;
+        font-size: 12px;
+    }
 }

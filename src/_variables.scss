@@ -75,6 +75,7 @@ $cursor: pointer;
 @mixin inputs{
     width: 80%;
     outline: none;
+    border: $border;
 }
 
 @mixin big-inputs{
@@ -115,4 +116,10 @@ $cursor: pointer;
 @mixin underline{
     height: 3px;
     width: 100%;
+}
+
+//flex
+@mixin flex-align-center{
+    display:flex;
+    align-items: center;
 }

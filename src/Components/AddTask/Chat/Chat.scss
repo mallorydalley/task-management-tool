@@ -1,21 +1,21 @@
 @import '../../../variables';
 
-.chat-container{
-   padding: 10px 20px;
-    box-sizing: border-box;
+// .chat-container{
+//    padding: 10px 20px;
+//     box-sizing: border-box;
    
-    border: 0;
-    display: block;
-    width: 100%;
-    // background: #fafafa;
-    border-bottom: 1px solid #eee;
-    /* font-family: Nunito; */
-    font-size: 16px; 
-}
+//     border: 0;
+//     display: block;
+//     width: 100%;
+//     background: #fafafa;
+//     border-bottom: 1px solid #eee;
+//     /* font-family: Nunito; */
+//     font-size: 16px; 
+// }
 
 
 .card{
-   padding: 10px 20px;
+//    padding: 10px 20px; //Do we really need this?
     box-sizing: border-box;
     border: 0;
     display: block;
@@ -28,6 +28,7 @@
 
 .card-body{
     // background-color: lightseagreen;
+    width: 100%;
     
     margin-bottom: 15px;
     // border-top: 1px solid #eee;
@@ -83,8 +84,6 @@
 .name-message{
     // background-color: sandybrown;
     margin-left: 5px;
-    // display: flex;
-    // flex-wrap: wrap;
 }
 
 .message{
@@ -101,9 +100,10 @@
 
 .comment-input{
     width: 85%;
-    padding: 12px;
+    padding: 10px;
     font-size: 18px;
     outline: none;
+    border: $border;
 }
 
 .comment-button{
@@ -116,6 +116,7 @@
     font-weight: $font-weight;
     outline: none;
     cursor: $cursor;
+
 }
 
 .comment-button:hover{
@@ -124,3 +125,48 @@
 .comment-button:focus{
     background-color: $blue-hover;
 }
+
+@media screen and(max-width: 1000px){
+    .card{
+        margin: 0px;
+        width: 100%;
+        
+    }
+    .card-body{
+        margin: 0px;
+        width: 100%;
+        padding-bottom: 10px;
+    }
+    .messages{
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media screen and(max-width: 600px){
+    .comment-input{
+        padding: 5px;
+        height: 20px;
+        font-size: 14px;
+    }
+    .comment-button{
+    font-size: 16px;
+    padding: 5px;
+}
+}
+@media screen and(max-width: 420px){
+    .comment-input{
+        padding: 5px;
+        height: 15px;
+        font-size: 12px;
+    }
+    .comment-button{
+    font-size: 12px;
+    padding: 5px;
+}
+}
+
+// width: 85%;
+//     padding: 12px;
+//     font-size: 18px;
+//     outline: none;

@@ -8,7 +8,7 @@ ul {
     // background-color: teal; 
     list-style-type: none;
     display: flex;
-    align-items: initial;
+    // align-items: initial;
     flex-direction: column;
     max-height: 110px;
     width: 200px;
@@ -25,11 +25,9 @@ li{
 
 .search-result{
     /* background-color: paleturquoise; */
-    display: flex;
-    align-items: center;
+    @include flex-align-center;
     top: 0px;
     left: 0px;
-    // justify-content: center;
 }
 
 .search-input-and-results{

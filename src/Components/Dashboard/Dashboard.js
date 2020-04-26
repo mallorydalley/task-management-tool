@@ -63,50 +63,41 @@ function Dashboard(props){
 
   return (
     <div>
-      <Folders 
-        selectFolder={selectFolder}
-      />
+      <Folders selectFolder={selectFolder} />
       <div className="dash">
         <div className="posts-column">
-
-          <div className='title-container'>
-            <span className='column-title'>New</span>
+          <div className="title-container">
+            <span className="column-title">New</span>
           </div>
-            <div className='underline'></div>
+          <div className="underline"></div>
 
-          <div className='tasks'>
-          {mappedNewTasks}
+          <div className="tasks">
+            <div className="task">{mappedNewTasks}</div>
           </div>
-
         </div>
         <div className="posts-column">
-
-          <div className='title-container'>
-            <span className='column-title'>In Progress</span>
-          </div>
-          <div className='underline-orange'></div>
-
-          <div className='tasks'>
-            {mappedInProgress}
+          <div className="tasks-header">
+            <div className="title-container">
+              <span className="column-title">In Progress</span>
+            </div>
+            <div className="underline-orange"></div>
           </div>
 
+          <div className="tasks">
+            <div className="task">{mappedInProgress}</div>
+          </div>
         </div>
         <div className="posts-column">
-
-          <div className='title-container'>
-            <span className='column-title'>Complete</span>
+          <div className="title-container">
+            <span className="column-title">Complete</span>
           </div>
-          <div className='underline-green'></div>
+          <div className="underline-green"></div>
 
-          <div className='tasks'>
-            {mappedComplete}
-          </div>
-
+          <div className="tasks">{mappedComplete}</div>
         </div>
-        
       </div>
     </div>
-  )         
+  );         
 }
 
 export default Dashboard;

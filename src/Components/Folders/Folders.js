@@ -55,6 +55,7 @@ class Folders extends React.Component{
         const mappedFolders = folders.map((folder, i) => (
           <div key={i} className="mapped-folders">
             <span
+              className='shown-folders'
               onClick={() => {
                 this.props.selectFolder(folder.folder_id);
               }}
@@ -68,19 +69,19 @@ class Folders extends React.Component{
           <div className="folder-container">
             <div className="folder-plus">
               <span className="folder-span">Folders</span>
-              <button onClick={this.toggleNewFolder}>+</button>
+              <button className='plus-btn' onClick={this.toggleNewFolder}></button>
             </div>
             {newFolder ? (
               <div className="input-and-btn">
                 <input
-                  className="search-input"
+                  className="folder-input"
                   placeholder="New folder"
                   value={name}
                   onChange={this.handleChange}
                   onSubmit={this.createFolder}
                 />
                
-                  <button className="save-button" onClick={this.createFolder}>
+                  <button className="folder-button" onClick={this.createFolder}>
                     Save
                   </button> 
                

@@ -100,7 +100,7 @@ componentDidUpdate(prevProps){
         // console.log(taskComments)
         // console.log(this.props)
         return (
-            <div className="chat-container">
+            // <div className="chat-container">
                 <div className="card">
                     <div className="card-body">
                         <div className="card-title">Comments</div>
@@ -146,7 +146,7 @@ componentDidUpdate(prevProps){
                 </div>
                     
               
-            </div>
+            // {/* </div> */}
         );
     }
 }

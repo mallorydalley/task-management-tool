@@ -17,6 +17,9 @@ function Nav(props) {
       const { employee_id, first_name, last_name, profile_pic } = res.data
       props.getEmployee(employee_id, first_name, last_name, profile_pic )
       props.history.push("/dashboard");
+      setShowLogin(false)
+      setEmail('')
+      setPass('')
     });
   };
 

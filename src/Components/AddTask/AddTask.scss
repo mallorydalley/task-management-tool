@@ -55,8 +55,7 @@
 // }
 
 .select_folder{
-     display: flex;
-    align-items: center;
+    @include flex-align-center;
     margin: 0 20px;
 }
 
@@ -66,16 +65,13 @@
 }
 
 .assign-folder-container{
-    display: flex;
-    align-items: center;
+    @include flex-align-center;
     margin: 15px 0;
     // background-color: tan;
 }
 
 .assign-and-folder{
-    display: flex;
-    align-items: center;
-    // margin: 0 20px;
+    @include flex-align-center;
 }
 
 // .search-result{
@@ -133,4 +129,14 @@
 }
 .add-task-btns:focus{
     background-color: $blue-hover;
+}
+
+@media screen and (max-width: 500px){
+    .add-task-page{
+        margin-top: 10px;
+    }
+    .add-task-container{
+        width: 90vw;
+        padding: 20px;
+    }
 }
