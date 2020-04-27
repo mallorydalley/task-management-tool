@@ -1,9 +1,6 @@
 @import '../../variables';
 
-.folder-section{
-    // background: linear-gradient(180deg, rgba(42,185,241,1) 35%, rgba(79,192,214,1) 100%);
-    // background-color: dodgerblue;
-    background-color: $primary-color;
+.folder-section{background-color: $primary-color;
     color: $secondary-text-color;
     height: 100vh;
     width: 170px;
@@ -15,7 +12,6 @@
         
 .folder-container{
     margin: 35px 12px;
-    // background-color: lightpink;
     text-align: left;
 }
 
@@ -37,7 +33,7 @@
 	font-size: 16px;
 	height: 2em;
 	width: 2em;
-	border-radius: 999px;
+	border-radius: 50%;
     position: relative;
     font-size: 12px;
     margin-left: 10px;
@@ -70,16 +66,14 @@
 
 .folders{
     margin-top: 15px;
+    padding-left: 5px;
     font-weight: $font-weight;
     font-size: $font-size;
-    padding-left: 5px;
     cursor: $cursor;
-    // background-color: lightsalmon;
 }
 
 .folder{
     margin-top: 15px;
-    // background-color: lightsteelblue;
 }
 
 .mapped-folders{
@@ -93,32 +87,24 @@
 
 .input-and-btn{
     @include flex-align-center;
-    // flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    // background-color: gray;
     margin-top: 10px;
-    // opacity: .5;
 }
 
 .folder-input{
-    // @include inputs;
-    width: 170px;
+    width: 110px;
     padding: 2px;
     font-size: 12px;
-    background-color: #fefefe;
-    border:none;
-    
-    // color: white;
+    @include no-border-outline;
 }
 
 .folder-button{
-    outline: none;
-    border:none;
+    @include no-border-outline;
     padding: 3px;
     background-color: $third-color;
     color: white;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 12px;
 }
 
@@ -130,13 +116,11 @@
             width: 100%;
             color: $secondary-text-color;
             background-color: $primary-color;
-            display: flex;
-            align-items: center;
+            @include flex-align-center;
             position: absolute;
             }
         .folder-container{
             @include flex-align-center;
-            // background-color: indianred;
             width: 100%;
             height: 50px;
         }
@@ -146,30 +130,18 @@
             margin-left: 15px;
             width: 20%;
         }
-        .folder-input{
-            width: 110px;
-        }
         .folders{
-            // display: block;
             @include flex-align-center;
             width: 100%;
-            // background-color: khaki;
             margin: 0 8px;
             height: 50px;
         }
         .folder{
-            // @include flex-align-center;
             display: flex;
             align-items: flex-start;
-            // background-color: lavender;
-            // width: 50%;
             margin: 5px;
-            // border-right: 1px solid #e9e9e9;
         }
         .mapped-folders{
-            // @include flex-align-center;
-            // background-color: lightgreen;
-            // width: 150px;
             margin: 0 15px;
         }
         }

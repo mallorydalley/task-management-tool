@@ -67,13 +67,9 @@
 // }
 
 .commenter-pic{
-    object-fit: cover;
-    height: 37px;
-    width: 37px;
-    border-radius: $border-radius;
+    @include profile_pic;
     top: 0px;
     left:0px;
-    // overflow: hidden;
 }
 
 .name{
@@ -87,9 +83,7 @@
 }
 
 .message{
-    // background-color: seashell;
     margin: 5px 10px;
-    // word-break: break-all;
 }
 
 .card-footer{

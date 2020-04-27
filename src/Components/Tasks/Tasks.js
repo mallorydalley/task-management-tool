@@ -1,11 +1,8 @@
 import React from 'react';
 import './Tasks.scss';
-import axios from 'axios';
-import {Link} from 'react-router-dom'
 
 function Tasks(props){
   const {title, description, profile_pic, img} = props.task
-// console.log(props.task)
     return (
       // <Link to={`/edit/${props.task.task_id}`} >
       <div

@@ -31,6 +31,7 @@ class Folders extends React.Component{
       axios.post(`/api/create-folder`, {name})
       .then(res => {
         this.setState({folders: [...this.state.folders, res.data], name: ''})
+        console.log(this.state.folders)
       })
       .catch(err => console.log(err))
     }
@@ -45,12 +46,12 @@ class Folders extends React.Component{
 
     componentDidUpdate(prevProps, prevState){
       if(prevState.folders !== this.state.folders){
-        console.log(this.state.folders)
+        return this.state.folders;
       }
     }
     render(){
       const {name, folders, newFolder} = this.state
-        console.log(name)
+        // console.log(name)
 
         const mappedFolders = folders.map((folder, i) => (
           <div key={i} className="mapped-folders">
