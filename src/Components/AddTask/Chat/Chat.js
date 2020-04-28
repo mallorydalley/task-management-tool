@@ -56,8 +56,9 @@ class Chat extends React.Component {
         const task_id = this.props.match.params.task_id
         const employee_id = this.props.employee_id
         axios.post(`/api/comment`, { comment, task_id, employee_id })
-            .then(() => {
-                // console.log(data)
+            .then(res => {
+                console.log(res.data)
+                // this.setState({taskComments: res.data})
             })
             .catch(err => console.log(err))
     }
@@ -94,7 +95,7 @@ componentDidUpdate(prevProps){
     }
 
     render() {
-        console.log(this.state.obj)
+        // console.log(this.state.obj)
         // console.log(this.props.comments)
         const {taskComments} = this.state
         // console.log(taskComments)
@@ -108,9 +109,9 @@ componentDidUpdate(prevProps){
                         <div className="messages">
                             
                         {taskComments.sort((a, b) => a.comment_id - b.comment_id).map((message, i) => {
-                            console.log(message)
+                            // console.log(message)
                             return (
-                                <div className='commenter'>
+                                <div key={i}className='commenter'>
                                     
                                     <img 
                                         className='commenter-pic' 

@@ -5,10 +5,8 @@
 }
 
 ul {
-    // background-color: teal; 
     list-style-type: none;
     display: flex;
-    // align-items: initial;
     flex-direction: column;
     max-height: 110px;
     width: 200px;
@@ -16,23 +14,18 @@ ul {
 }
 
 li{
-    // background-color: violet;
     height: 35px;
     width: 100%;
     margin: 3px;
-    align-items: flex-start;
 }
 
 .search-result{
-    /* background-color: paleturquoise; */
     @include flex-align-center;
     top: 0px;
     left: 0px;
 }
 
 .search-input-and-results{
-    // background-color: tomato;
-    // width: 250px;
     display: flex;
     flex-direction: column;
 }
@@ -61,5 +54,4 @@ li{
 
 .name-result{
     font-size: 16px;
-    // background-color: lightseagreen; 
 }

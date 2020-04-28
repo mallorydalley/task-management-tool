@@ -4,13 +4,11 @@
     display: flex;
     justify-content: center;
     margin-top: 40px;
-    // background-color: $background-color;
 }
 
 .add-task-container{
     background-color: #ffffff;
     box-shadow: $shadow;
-    // min-height: 80vh;
     width: 75vw;
     display: flex;
     flex-direction: column;
@@ -22,37 +20,25 @@
 .title-input{
     @include big-inputs;
     border: $border;
-    // background-color: #fcfcfc;
 }
 
 .select_folder{
-    background-color: slateblue;
     display: flex;
     justify-content: start;
-    // height: 50px;
 }
 
 #status{
     height: 40px;
     width: 100px;
     padding-left: 12px;
-    margin: 15px 0;
+    margin: $fifteen-zero;
     font-size: 14px;
     text-align: center;
     border-radius: 0;
-    border: none;
-    // background-color: azure;
-    outline: none;
+    @include no-border-outline;
     cursor: $cursor;
     box-shadow: inset 2px 0px 20px -10px rgb(228, 228, 228);
-    // appearance: none;
 }
-
-// .selection-folder{
-//     background-color: seagreen;
-//     height: 250px;
-//     box-shadow: inset 2px 0px 20px -10px rgb(228, 228, 228);
-// }
 
 .select_folder{
     @include flex-align-center;
@@ -61,38 +47,27 @@
 
 .line-spacing{
     height: 1px;
-    // background-color: tomato;
 }
 
 .assign-folder-container{
     @include flex-align-center;
-    margin: 15px 0;
-    // background-color: tan;
+    margin: $fifteen-zero;
 }
 
 .assign-and-folder{
     @include flex-align-center;
 }
 
-// .search-result{
-//     // background-color: pink;
-// }
-
 .em-search-image{
     object-fit: cover;
-    height: 20px;
-    width: 20px;
-    // margin-left: 10px;
+    @include twenty-height-width;
 }
 
 .remove{
-    // border-radius: 50%;
-    // object-fit: cover;
     border: none;
     font-weight: 500;
     font-size: 14px;
-    height: 20px;
-    width: 20px;
+    @include twenty-height-width;
     text-align: center;
     margin-left: 5px;
     cursor: $cursor;
@@ -103,20 +78,20 @@
     border: $border;
     padding: 5px;
     width: 20%;
-    margin: 15px 0;
+    margin: fifteen-zero;
 }
 
 
 
 .desc-input {
-    border: none;
+    @include no-border-outline;
     height: 110px;
     padding: 12px;
     font-size: 17px;
     margin: 20px 0;
-    border-top: 1px solid #e9e9e9;
-    border-bottom: 1px solid #e9e9e9;
-    outline: none;
+    border-top: $top-bottom-border;
+    border-bottom: $top-bottom-border;
+    
 }
 
 .add-task-btns{

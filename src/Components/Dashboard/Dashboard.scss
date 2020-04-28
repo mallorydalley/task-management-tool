@@ -10,8 +10,8 @@
     width: 300px;
     height: 90vh;
     margin: 5px;
-    overflow: scroll;
     padding: 5px;
+    overflow: scroll;
 }
 
 .title-container{
@@ -57,8 +57,6 @@
     .posts-column{
     width: 300px;
     max-height: 600px;
-    margin: 5px;
-    padding: 5px;
 }
 }
 @media screen and (max-width: 650px){
@@ -71,7 +69,5 @@
     width: 300px;
     max-height: 600px;
     min-height: 100px;
-    margin: 5px;
-    padding: 5px;
 }
 }

@@ -9,7 +9,6 @@ $font-weight: 700;
 $font-size: 16px;
 
 //background colors
-// $background-color: #fefefe;
 $background-color: rgb(252, 252, 252);
 $card-color: rgb(255, 255, 255);
 $shadow: 1px 1.5px 4px rgb(232, 232, 232);
@@ -20,10 +19,18 @@ $border-radius: 50%;
 //inputs
 $border: 1px solid rgb(237, 237, 237);
 
+$top-bottom-border: 1px solid #e9e9e9;
+
 //buttons
 $blue-hover: #0c73da;
 
+//cursor
 $cursor: pointer;
+
+//margins, padding, height, width
+$fifteen-zero: 15px 0;
+
+
 
 //nav bar
 @mixin nav-bar{
@@ -85,11 +92,11 @@ $cursor: pointer;
 @mixin big-inputs{
     padding: 14px;
     font-size: 26px;
-    // font-style: italic;
     box-sizing: border-box;
     border: 0;
     outline: none;
 }
+
 @mixin no-border-outline{
     border: none;
     outline: none;
@@ -146,4 +153,19 @@ $cursor: pointer;
     height: 40px;
     width: 40px;
     border-radius: 50%;
+}
+
+@mixin no-margin-yes-width{
+    margin: 0;
+    width: 100%;
+}
+
+@mixin twenty-height-width{
+    height: 20px;
+    width: 20px;
+}
+
+@mixin hundred-width-fifty-height{
+    width: 100%;
+    height: 50px;
 }
